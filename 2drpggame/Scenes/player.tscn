@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b1m2yojleotwt"]
+[gd_scene load_steps=29 format=3 uid="uid://b1m2yojleotwt"]
 
 [ext_resource type="Script" path="res://Scenes/Player.cs" id="1_5a8xb"]
 [ext_resource type="Texture2D" uid="uid://dgyctj2fsrdv3" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="2_7t7ae"]
@@ -194,11 +194,8 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h587n"]
-radius = 10.5115
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_u7kae"]
-radius = 10.8428
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1jp4"]
+size = Vector2(25.9021, 35.879)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -215,12 +212,9 @@ frame = 4
 frame_progress = 0.693859
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -10.1111)
-shape = SubResource("CircleShape2D_h587n")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0.999999, -22.9682)
-shape = SubResource("CircleShape2D_u7kae")
+position = Vector2(1.0725, -17.3201)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_v1jp4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
