@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgo4k7br87bv6"]
+
+[ext_resource type="Script" path="res://Scripts/FSM/FSM/StateMachine.cs" id="1_uxac4"]
+[ext_resource type="Script" path="res://Scripts/FSM/PatrolState.cs" id="2_uunh4"]
+[ext_resource type="Script" path="res://Scripts/FSM/ChaseState.cs" id="3_w5e6c"]
+[ext_resource type="Script" path="res://Scripts/FSM/AttackState.cs" id="4_lhbly"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxodp"]
+
+[node name="NPC" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gxodp")
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("npc")]
+script = ExtResource("1_uxac4")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="FSM" node_paths=PackedStringArray("waypoints")]
+script = ExtResource("2_uunh4")
+waypoints = [null, null, null]
+
+[node name="ChaseState" type="Node" parent="FSM"]
+script = ExtResource("3_w5e6c")
+
+[node name="AttackState" type="Node" parent="FSM"]
+script = ExtResource("4_lhbly")
