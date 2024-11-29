@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm46sgx7422cb"
-path="res://.godot/imported/Village hus 1.png-03af4f5424bdeee59d3bf31adadb3993.ctex"
+uid="uid://td2q7yvxv7db"
+path="res://.godot/imported/Chob3n1.png-9928698ed76fdeb127c7cc22e58802a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Village hus 1.png"
-dest_files=["res://.godot/imported/Village hus 1.png-03af4f5424bdeee59d3bf31adadb3993.ctex"]
+source_file="res://Art/Pixel fantasy world Demo/Chob3n1.png"
+dest_files=["res://.godot/imported/Chob3n1.png-9928698ed76fdeb127c7cc22e58802a5.ctex"]
 
 [params]
 
