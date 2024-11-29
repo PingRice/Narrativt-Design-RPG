@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://cbobmsyx0lsnh"]
+[gd_scene load_steps=29 format=4 uid="uid://cbobmsyx0lsnh"]
 
 [ext_resource type="Texture2D" uid="uid://ddokf0g1awqi6" path="res://Art/DessertTileset16x16/DesertMockup.png" id="1_elryj"]
 [ext_resource type="Texture2D" uid="uid://bink1d71v8k2y" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/Decoration/tree_1.png" id="2_7t2q1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bm46sgx7422cb" path="res://Art/Pixel fantasy world Demo/Village hus 1.png" id="7_3ceru"]
 [ext_resource type="PackedScene" uid="uid://b1m2yojleotwt" path="res://Scenes/player.tscn" id="7_gcyco"]
 [ext_resource type="Texture2D" uid="uid://jgy7sfxsgqu5" path="res://Art/Pixel fantasy world Demo/PixelFantasyWorldMergeTileset.png" id="8_tog87"]
+[ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/npc.tscn" id="10_i42o1"]
 [ext_resource type="Texture2D" uid="uid://yaic1x7xgf7m" path="res://Art/Pixel fantasy world Demo/Object/Object.png" id="12_sgplh"]
 [ext_resource type="Texture2D" uid="uid://x8tumacedipp" path="res://Art/Pixel fantasy world Demo/Tileset/Tileset.png" id="13_b7h2k"]
 
@@ -12636,3 +12637,27 @@ tile_set = SubResource("TileSet_dlj77")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
 position = Vector2(416, 304)
+
+[node name="NPC" parent="." instance=ExtResource("10_i42o1")]
+position = Vector2(711, 1050)
+
+[node name="PatrolState" parent="NPC/FSM" index="0" node_paths=PackedStringArray("waypoints", "player")]
+waypoints = [NodePath("../../../WP1"), NodePath("../../../WP2"), NodePath("../../../WP3")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" parent="NPC/FSM" index="1" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="AttackState" parent="NPC/FSM" index="2" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="WP1" type="Node2D" parent="."]
+position = Vector2(601, 1027)
+
+[node name="WP2" type="Node2D" parent="."]
+position = Vector2(437, 931)
+
+[node name="WP3" type="Node2D" parent="."]
+position = Vector2(382, 1030)
+
+[editable path="NPC"]
