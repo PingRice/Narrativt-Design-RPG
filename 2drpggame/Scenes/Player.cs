@@ -1,10 +1,14 @@
 using Godot;
 using System;
 
+//[export] float attacking = false;
+
+
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 130.0f;
+	public float Speed = 130.0f;
 	AnimatedSprite2D aniSprite;
+	bool isAttacking = false;
 
 
 	public override void _Ready() 
@@ -27,30 +31,59 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.X = direction.X * Speed;
 			aniSprite.FlipH = false;
-			aniSprite.Play("leftRight");
+			if ( isAttacking == false )
+				aniSprite.Play("leftRight");
 		} 
 		else if (direction.X < 0)//left 
 		{
 			velocity.X = direction.X * Speed;
 			aniSprite.FlipH = true;
-			aniSprite.Play("leftRight");
+			if ( isAttacking == false )
+				aniSprite.Play("leftRight");
 		} 
 		else if (direction.Y < 0)
 		{
 			velocity.Y = direction.Y * Speed;
-			aniSprite.Play("up");
+			if ( isAttacking == false )
+				aniSprite.Play("up");
 		}  
 		else if (Input.IsActionPressed("ui_down"))
 		{
 			velocity.Y = direction.Y * Speed;
-			aniSprite.Play("down");
-		} else if (direction.X == 0 && direction.Y == 0) 
+			if ( isAttacking == false )
+				aniSprite.Play("down");
+		} 
+		else if (direction.X == 0 && direction.Y == 0) 
 		{
-			aniSprite.Play("idle");
+			if ( isAttacking == false )
+				aniSprite.Play("idle");
 		}
 		
+		
+		if (Input.IsActionPressed("attack"))
+		{
+				
+					if( this.isAttacking == false )
+					{
+						aniSprite.Play("SwordSwingLeftRight");
+						isAttacking = true;
+						Speed = 65f;
+					}
+				
+				GD.Print("Sword swing leftRight");
+			
+			
+			
+		}
 
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+	public void AttackIsOver()
+	{
+		isAttacking = false;
+		Speed = 130f;
+	}
+	
+	
 }
