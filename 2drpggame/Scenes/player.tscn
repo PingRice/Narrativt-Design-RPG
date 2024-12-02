@@ -194,8 +194,8 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1jp4"]
-size = Vector2(25.9021, 35.879)
+[sub_resource type="CircleShape2D" id="CircleShape2D_h30tc"]
+radius = 11.7803
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -203,7 +203,7 @@ scale = Vector2(0.7, 0.7)
 script = ExtResource("1_5a8xb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -33.3333)
+position = Vector2(-1.42857, -25.7143)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0bb5w")
 animation = &"idle"
@@ -211,11 +211,11 @@ autoplay = "idle"
 frame = 4
 frame_progress = 0.693859
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.0725, -17.3201)
-scale = Vector2(0.999999, 0.999999)
-shape = SubResource("RectangleShape2D_v1jp4")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1.42857, -22.8571)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.42857)
+shape = SubResource("CircleShape2D_h30tc")
