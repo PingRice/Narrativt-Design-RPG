@@ -7,10 +7,10 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
 {
-	public float Speed = 130.0f;
+	public float Speed = 120.0f;
 	AnimatedSprite2D aniSprite;
 	bool isAttacking = false;
-
+	int DirectionMoved;
 
 	public override void _Ready()
 	{
@@ -41,59 +41,100 @@ public partial class Player : CharacterBody2D
 
 
 
+
 		if (direction.X > 0)  //walking right animation
 		{
 			velocity.X = direction.X * Speed;
 			if (isAttacking == false)
+			{
 				aniSprite.Play("leftRight");
+				//aniIsPlaying = true;
+			}
 		}
 		else if (direction.X < 0)  //walking left animation
 		{
 			velocity.X = direction.X * Speed;
 			if (isAttacking == false)
+			{
 				aniSprite.Play("leftRight");
+				//aniIsPlaying = true;
+			}
 		}
 		else if (direction.Y < 0)  //walking upwards animation
 		{
 			velocity.Y = direction.Y * Speed;
 			if (isAttacking == false)
+			{
 				aniSprite.Play("up");
+				//aniIsPlaying = true;
+			}
 		}
 		else if (Input.IsActionPressed("ui_down"))  //walking downwards animation
 		{
 			velocity.Y = direction.Y * Speed;
 			if (isAttacking == false)
+			{
 				aniSprite.Play("down");
+				//aniIsPlaying = true;
+			}
 		}
 		else if (direction.X == 0 && direction.Y == 0)
 		{
 			if (isAttacking == false)
-				GetLastMotion(velocity);
-					GD.Print(GetLastMotion());
-
-				
 			{
-				aniSprite.Play("idle");
+				//if (aniIsPlaying == false)
+				{
+					if (GetLastMotion().Y < 0)
+					{
+						aniSprite.Play("IdleFacingUp");
+						GD.Print(GetLastMotion() + "... is the last motion (its upwards)");
+						DirectionMoved = 1;
+					}
+					else if (GetLastMotion().Y > 0)
+					{
+						aniSprite.Play("idle");
+						DirectionMoved = 2;
+					}
+					else if (GetLastMotion().X != 0)
+					{
+						aniSprite.Play("IdleLeftRight");
+						DirectionMoved = 3;
+					}
+				}
+
+
 			}
 		}
 
-		
-		
+
+
 
 
 		if (Input.IsActionPressed("attack"))
 		{
-
 			if (this.isAttacking == false)
 			{
-				aniSprite.Play("SwordSwingLeftRight");
+				
 				isAttacking = true;
-				Speed = 65f;
+				Speed = 40f;
+
+				if (DirectionMoved == 1)
+				{
+					aniSprite.Play("SwordSwingUp");
+					GD.Print("Attacking upwards!");
+				}
+				else if (DirectionMoved == 2)
+				{
+					aniSprite.Play("SwordSwingDown");
+					GD.Print("Attacking downwards!");
+				}
+				else if (DirectionMoved == 3)
+				{
+					aniSprite.Play("SwordSwingLeftRight");
+					GD.Print("Attacking Left... or Right!");
+				}
+
 			}
-
-			GD.Print("Sword swing leftRight");
-
-
 
 		}
 
@@ -101,22 +142,20 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-    private void GetLastMotion(float x, float y)
-    {
-        throw new NotImplementedException();
-    }
 
 
-    public void GetLastMotion(Vector2 velocity)
-    {
-        GD.Print(GetLastMotion() + "... is the last motion");
-    }
 
-    public void AttackIsOver()
+	public void GetLastMotion(Vector2 velocity)
+	{
+
+	}
+
+	public void AttackIsOver()
 	{
 		isAttacking = false;
-		Speed = 130f;
+		Speed = 120f;
 	}
+
 
 
 }
