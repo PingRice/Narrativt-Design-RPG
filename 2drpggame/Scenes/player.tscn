@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=3 uid="uid://b1m2yojleotwt"]
 
-[ext_resource type="Script" path="res://Scenes/Player.cs" id="1_5a8xb"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_5a8xb"]
 [ext_resource type="Texture2D" uid="uid://dgyctj2fsrdv3" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="2_7t7ae"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptvsi"]
@@ -323,12 +323,14 @@ zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 1.42857)
 shape = SubResource("CircleShape2D_h30tc")
 
 [node name="PlayerHurtbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+visible = false
 position = Vector2(0, -7.14286)
 shape = SubResource("CapsuleShape2D_58fd2")
 debug_color = Color(0.984314, 0, 0.352941, 0.419608)
@@ -336,6 +338,7 @@ debug_color = Color(0.984314, 0, 0.352941, 0.419608)
 [node name="SwordHitboxDown" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitboxDown"]
+visible = false
 position = Vector2(2.69984, 12.3395)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qt41t")

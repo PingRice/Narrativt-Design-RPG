@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bgo4k7br87bv6"]
 
-[ext_resource type="Script" path="res://Scenes/Npc.cs" id="1_k5jh6"]
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_k5jh6"]
 [ext_resource type="Script" path="res://Scripts/FSM/FSM/StateMachine.cs" id="2_py77i"]
 [ext_resource type="Script" path="res://Scripts/FSM/PatrolState.cs" id="3_qtn2d"]
 [ext_resource type="Script" path="res://Scripts/FSM/ChaseState.cs" id="4_eoedq"]
