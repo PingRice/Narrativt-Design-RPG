@@ -57,6 +57,7 @@ collision_mask = 4
 script = ExtResource("1_k5jh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 4)
 rotation = 1.5708
 scale = Vector2(0.75, 0.75)
@@ -91,6 +92,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+visible = false
 position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_prmxh")

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Security.Cryptography.X509Certificates;
 
-//[export] float attacking = false;
+
 
 
 public partial class Player : CharacterBody2D
@@ -10,7 +10,7 @@ public partial class Player : CharacterBody2D
 	public float Speed = 120.0f;
 	AnimatedSprite2D aniSprite;
 	bool isAttacking = false;
-	int DirectionMoved;
+	int DirectionMoved = 1;
 
 	public override void _Ready()
 	{
@@ -37,72 +37,56 @@ public partial class Player : CharacterBody2D
 			aniSprite.FlipH = true;
 
 
-
-
-
-
-
-		if (direction.X > 0)  //walking right animation
+		if (direction != Vector2.Zero)
 		{
-			velocity.X = direction.X * Speed;
-			if (isAttacking == false)
-			{
-				aniSprite.Play("leftRight");
-				//aniIsPlaying = true;
-			}
+			velocity = direction * Speed;
 		}
-		else if (direction.X < 0)  //walking left animation
+
+
+
+
+
+		if (direction.X != 0)  //walking left or right animation
 		{
-			velocity.X = direction.X * Speed;
 			if (isAttacking == false)
 			{
 				aniSprite.Play("leftRight");
-				//aniIsPlaying = true;
 			}
 		}
 		else if (direction.Y < 0)  //walking upwards animation
 		{
-			velocity.Y = direction.Y * Speed;
 			if (isAttacking == false)
 			{
 				aniSprite.Play("up");
-				//aniIsPlaying = true;
 			}
 		}
-		else if (Input.IsActionPressed("ui_down"))  //walking downwards animation
+		else if (direction.Y > 0)  //walking downwards animation
 		{
-			velocity.Y = direction.Y * Speed;
 			if (isAttacking == false)
 			{
 				aniSprite.Play("down");
-				//aniIsPlaying = true;
 			}
 		}
 		else if (direction.X == 0 && direction.Y == 0)
 		{
 			if (isAttacking == false)
 			{
-				//if (aniIsPlaying == false)
 				{
-					if (GetLastMotion().Y < 0)
+					if (GetLastMotion().X != 0)
+					{
+						aniSprite.Play("IdleLeftRight");
+					}
+					else if (GetLastMotion().Y < 0)
 					{
 						aniSprite.Play("IdleFacingUp");
-						GD.Print(GetLastMotion() + "... is the last motion (its upwards)");
-						DirectionMoved = 1;
+						DirectionMoved = 2;
 					}
 					else if (GetLastMotion().Y > 0)
 					{
 						aniSprite.Play("idle");
-						DirectionMoved = 2;
-					}
-					else if (GetLastMotion().X != 0)
-					{
-						aniSprite.Play("IdleLeftRight");
 						DirectionMoved = 3;
 					}
 				}
-
-
 			}
 		}
 
@@ -114,30 +98,44 @@ public partial class Player : CharacterBody2D
 		{
 			if (this.isAttacking == false)
 			{
-				
 				isAttacking = true;
 				Speed = 40f;
 
-				if (DirectionMoved == 1)
-				{
-					aniSprite.Play("SwordSwingUp");
-					GD.Print("Attacking upwards!");
-				}
-				else if (DirectionMoved == 2)
-				{
-					aniSprite.Play("SwordSwingDown");
-					GD.Print("Attacking downwards!");
-				}
-				else if (DirectionMoved == 3)
+				if (direction.X != 0)
 				{
 					aniSprite.Play("SwordSwingLeftRight");
 					GD.Print("Attacking Left... or Right!");
 				}
-
+				else if (direction.Y < 0)
+				{
+					aniSprite.Play("SwordSwingUp");
+					GD.Print("Attacking upwards!");
+				}
+				else if (direction.Y > 0)
+				{
+					aniSprite.Play("SwordSwingDown");
+					GD.Print("Attacking downwards!");
+				}
+				else if (direction.X == 0 && direction.Y == 0)
+				{
+					if (DirectionMoved == 1)
+					{
+						aniSprite.Play("SwordSwingLeftRight");
+						GD.Print("Attacking Left... or Right!");
+					}
+					if (DirectionMoved == 2)
+					{
+						aniSprite.Play("SwordSwingUp");
+						GD.Print("Attacking upwards!");
+					}
+					if (DirectionMoved == 3)
+					{
+						aniSprite.Play("SwordSwingDown");
+						GD.Print("Attacking downwards!");
+					}
+				}
 			}
-
 		}
-
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -145,17 +143,33 @@ public partial class Player : CharacterBody2D
 
 
 
-	public void GetLastMotion(Vector2 velocity)
-	{
 
-	}
 
 	public void AttackIsOver()
 	{
 		isAttacking = false;
 		Speed = 120f;
+		GD.Print("Attack is over");
 	}
 
+	public void AnimationHasChanged()
+	{
+		if (GetLastMotion().X != 0)
+		{
+			DirectionMoved = 1;
+			GD.Print("motion recieved: ±X");
+		}
+		if (GetLastMotion().Y < 0)
+		{
+			DirectionMoved = 2;
+			GD.Print("motion recieved: +Y");
+		}
+		if (GetLastMotion().Y > 0)
+		{
+			DirectionMoved = 3;
+			GD.Print("motion recieved: -Y");
+		}
+	}
 
 
 }
