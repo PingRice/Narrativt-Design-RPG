@@ -99,7 +99,7 @@ public partial class Player : CharacterBody2D
 			if (this.isAttacking == false)
 			{
 				isAttacking = true;
-				Speed = 40f;
+				Speed = 30f;
 
 				if (direction.X != 0)
 				{

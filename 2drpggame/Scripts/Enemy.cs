@@ -37,4 +37,8 @@ public partial class Npc : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	public void OnAreaEntered(){
+		GD.Print("AUUUCHH.");
+	}
 }

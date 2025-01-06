@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cbobmsyx0lsnh"]
+[gd_scene load_steps=34 format=4 uid="uid://cbobmsyx0lsnh"]
 
 [ext_resource type="Texture2D" uid="uid://n1t474jifib4" path="res://Art/mystic_woods_free_2.2/Merged tilesets mystic woods.png" id="1_2aeyd"]
 [ext_resource type="Texture2D" uid="uid://x8tumacedipp" path="res://Art/Pixel fantasy world Demo/Tileset/Tileset.png" id="2_athvk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bink1d71v8k2y" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/Decoration/tree_1.png" id="9_es7or"]
 [ext_resource type="Texture2D" uid="uid://jgy7sfxsgqu5" path="res://Art/Pixel fantasy world Demo/PixelFantasyWorldMergeTileset.png" id="10_6tcx3"]
 [ext_resource type="PackedScene" uid="uid://b1m2yojleotwt" path="res://Scenes/player.tscn" id="11_6ahtp"]
+[ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/Enemy.tscn" id="12_bo6r8"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yieem"]
 tile_data = PackedInt32Array(0, 131078, 3, 65536, 131078, 4, 131072, 131078, 4, 196608, 131078, 4, 262144, 131078, 4, 327680, 131078, 4, 393216, 131078, 4, 458752, 131078, 4)
@@ -13493,3 +13494,6 @@ tile_set = SubResource("TileSet_dlj77")
 
 [node name="Player" parent="." instance=ExtResource("11_6ahtp")]
 position = Vector2(-293, 642)
+
+[node name="Enemy" parent="." instance=ExtResource("12_bo6r8")]
+position = Vector2(-211, 639)
