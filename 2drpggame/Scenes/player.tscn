@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://b1m2yojleotwt"]
+[gd_scene load_steps=56 format=3 uid="uid://b1m2yojleotwt"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_5a8xb"]
 [ext_resource type="Texture2D" uid="uid://dgyctj2fsrdv3" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="2_7t7ae"]
+[ext_resource type="Script" path="res://Scenes/SwordHitboxLeftRight.cs" id="3_p24dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rief8"]
 atlas = ExtResource("2_7t7ae")
@@ -440,10 +441,14 @@ disabled = true
 debug_color = Color(0.429524, 0.601647, 0, 0.42)
 
 [node name="SwordHitboxLeftRight" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
 monitoring = false
+script = ExtResource("3_p24dv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwordHitboxLeftRight"]
 polygon = PackedVector2Array(12.0656, -9.63323, 25.0195, -8.57144, 34.5756, -2.20069, 35.2127, 4.80714, 25.8689, 14.3633, 11.4286, 16.6992, -5.13538, 16.2745, -20.4252, 10.3285, -32.3173, -0.0771005, -25.3094, -3.47483, -14.9039, 3.9577, -5.13538, 7.5678, 7.39377, 7.14308, 18.0117, 3.53299, 20.56, -3.68719)
+disabled = true
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="AnimationHasChanged"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="AttackIsOver"]
