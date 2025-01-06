@@ -38,7 +38,8 @@ public partial class Npc : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void OnAreaEntered(){
+	public void OnAreaEntered()
+	{
 		GD.Print("AUUUCHH.");
 	}
 }

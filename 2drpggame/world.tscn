@@ -13613,8 +13613,26 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAA8ACgAAgADAAIAAABNABAAAgADAAIAAAA7ABAAAgADAAIAAAAnABAAAgADAAIAAAAVACgAAgADAAIAAAAnACgAAgADAAIAAABOACgAAgADAAIAAAA5ABwABAAAAAAAAAA9ABwABAADAAAAAABAABwABAAFAAAAAABDABwABAAHAAAAAABGABwABAAJAAAAAACqADYAAwAAAAAAAAC8ADkAAwAAAAAAAAC2ADQAAwAAAAAAAACZADcAAwAAAAAAAACHADkAAwAAAAAAAACOACgAAwAAAAAAAACaACQAAwAAAAAAAACqABkAAwAAAAAAAACsACkAAwAAAAAAAADCABYAAwAAAAAAAACWABUAAwAAAAAAAAB5ACYAAwAAAAAAAABwABUAAwAAAAAAAAC5ACkAAwAAAAAAAACe/1UAAQAWAAAAAACg/1IAAQAWAAAAAACj/1EAAQAWAAAAAACk/1oAAQAaAAIAAACn/1EAAQAaAAIAAACo/1wAAQAWAAAAAACv/1IAAQAWAAAAAACy/1UAAQAaAAIAAACz/10AAQAaAAIAAAC1/1oAAQAaAAIAAACw/18AAQAaAAIAAACr/14AAQAWAAAAAADq/xAAAQABAAYAAADq/xEAAQABAAcAAADq/xIAAQABAAgAAADq/xMAAQABAAkAAADr/xAAAQACAAYAAADr/xEAAQACAAcAAADr/xIAAQACAAgAAADr/xMAAQACAAkAAADs/xAAAQACAAYAAADs/xEAAQACAAcAAADs/xIAAQACAAgAAADs/xMAAQACAAkAAADk/xQAAQABAAYAAADk/xUAAQABAAcAAADk/xYAAQABAAgAAADk/xcAAQABAAkAAADl/xQAAQACAAYAAADl/xUAAQACAAcAAADl/xYAAQACAAgAAADl/xcAAQACAAkAAADm/xQAAQADAAYAAADm/xUAAQADAAcAAADm/xYAAQADAAgAAADm/xcAAQADAAkAAADt/xAAAQACAAYAAADt/xEAAQACAAcAAADt/xIAAQACAAgAAADt/xMAAQACAAkAAADu/xAAAQADAAYAAADu/xEAAQADAAcAAADu/xIAAQADAAgAAADu/xMAAQADAAkAAAA=")
 tile_set = SubResource("TileSet_dlj77")
 
-[node name="Enemy" parent="TilemapLayers" instance=ExtResource("13_yc4f4")]
-position = Vector2(-239, 641)
-
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
 position = Vector2(-293, 642)
+
+[node name="Waypoint1" type="Node2D" parent="."]
+position = Vector2(-239, 576)
+
+[node name="Waypoint2" type="Node2D" parent="."]
+position = Vector2(-239, 712)
+
+[node name="Enemy" parent="." instance=ExtResource("13_yc4f4")]
+position = Vector2(-239, 641)
+
+[node name="PatrolState" parent="Enemy/FSM" index="0" node_paths=PackedStringArray("waypoints", "player")]
+waypoints = [NodePath("../../../Waypoint1"), NodePath("../../../Waypoint2")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" parent="Enemy/FSM" index="1" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="AttackState" parent="Enemy/FSM" index="2" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[editable path="Enemy"]
