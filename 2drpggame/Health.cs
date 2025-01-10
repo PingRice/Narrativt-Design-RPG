@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Health : Node2D
+public partial class Health : Node
 {
 	public float StartHealth = 100f;
 	
@@ -13,7 +13,7 @@ public partial class Health : Node2D
 			_HealthPoints = Mathf.Clamp(value,0f,100f);
 			if(_HealthPoints <= 0f)
 			{
-				//Die
+				GetTree().ReloadCurrentScene();
 			}
 		}
 	}
