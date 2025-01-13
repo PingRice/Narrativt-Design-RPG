@@ -15,6 +15,10 @@ run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Health="*res://Health.cs"
+
 [dotnet]
 
 project/assembly_name="2DRPGGame"
