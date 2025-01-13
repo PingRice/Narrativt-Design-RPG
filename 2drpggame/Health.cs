@@ -5,6 +5,8 @@ public partial class Health : Node
 {
 	public float StartHealth = 100f;
 	
+	public float regeneration = 1f;
+	
 	public float HealthPoints
 	{
 		get { return _HealthPoints; }
@@ -22,6 +24,8 @@ public partial class Health : Node
 	
 	public override void _Ready()
 	{ 
+		Health health = GetNode<Health>("/root/Health")
 		HealthPoints = StartHealth;
+		ProgressBar.Value = 100;
 	}
 }

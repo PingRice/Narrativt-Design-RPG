@@ -4,3 +4,11 @@
 
 [node name="Health" type="Node"]
 script = ExtResource("1_6rk88")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_right = 219.0
+offset_bottom = 55.0
+fill_mode = 1
