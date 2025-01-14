@@ -24,8 +24,7 @@ public partial class Health : Node
 	
 	public override void _Ready()
 	{ 
-		Health health = GetNode<Health>("/root/Health")
+		Health health = GetNode<Health>("/root/Health");
 		HealthPoints = StartHealth;
-		ProgressBar.Value = 100;
 	}
 }

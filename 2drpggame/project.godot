@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Health="*res://Health.cs"
+Health="*res://Scripts/Health.cs"
 
 [dotnet]
 
