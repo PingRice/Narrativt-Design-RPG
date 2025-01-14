@@ -7,14 +7,20 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
 {
-	public float Speed = 120.0f;
+	[Export] public float Speed = 120.0f;
 	AnimatedSprite2D aniSprite;
 	bool isAttacking = false;
-	int DirectionMoved = 1;
+	public int DirectionMoved = 1;
+	public bool isAttackReady = true;
+	bool areaOverlapping = false;
+	public Area2D HitBox;
+
 
 	public override void _Ready()
 	{
 		aniSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		HitBox = GetNode<Area2D>("SwordHitbox");
+		GD.Print("this is my hitbox" + HitBox);
 	}
 
 
@@ -51,6 +57,7 @@ public partial class Player : CharacterBody2D
 			if (isAttacking == false)
 			{
 				aniSprite.Play("leftRight");
+				hitboxChange(direction.X, direction.Y);
 			}
 		}
 		else if (direction.Y < 0)  //walking upwards animation
@@ -58,6 +65,7 @@ public partial class Player : CharacterBody2D
 			if (isAttacking == false)
 			{
 				aniSprite.Play("up");
+				hitboxChange(direction.X, direction.Y);
 			}
 		}
 		else if (direction.Y > 0)  //walking downwards animation
@@ -65,28 +73,29 @@ public partial class Player : CharacterBody2D
 			if (isAttacking == false)
 			{
 				aniSprite.Play("down");
+				hitboxChange(direction.X, direction.Y);
 			}
 		}
 		else if (direction.X == 0 && direction.Y == 0)
 		{
 			if (isAttacking == false)
 			{
+
+				if (GetLastMotion().X != 0)
 				{
-					if (GetLastMotion().X != 0)
-					{
-						aniSprite.Play("IdleLeftRight");
-					}
-					else if (GetLastMotion().Y < 0)
-					{
-						aniSprite.Play("IdleFacingUp");
-						DirectionMoved = 2;
-					}
-					else if (GetLastMotion().Y > 0)
-					{
-						aniSprite.Play("idle");
-						DirectionMoved = 3;
-					}
+					aniSprite.Play("IdleLeftRight");
 				}
+				else if (GetLastMotion().Y < 0)
+				{
+					aniSprite.Play("IdleFacingUp");
+					DirectionMoved = 2;
+				}
+				else if (GetLastMotion().Y > 0)
+				{
+					aniSprite.Play("idle");
+					DirectionMoved = 3;
+				}
+
 			}
 		}
 
@@ -99,12 +108,23 @@ public partial class Player : CharacterBody2D
 			if (this.isAttacking == false)
 			{
 				isAttacking = true;
-				Speed = 30f;
+				Speed = Speed - 90f;
+				if (isAttackReady == true)
+				{
+					GD.Print("Attack was ready..");
+					if (areaOverlapping == true)
+					{
+						GD.Print("AUUUCHH.");
+
+						isAttackReady = false;
+					}
+				}
 
 				if (direction.X != 0)
 				{
 					aniSprite.Play("SwordSwingLeftRight");
 					GD.Print("Attacking Left... or Right!");
+
 				}
 				else if (direction.Y < 0)
 				{
@@ -140,16 +160,42 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
+	private void hitboxChange(float posX, float posY)
+	{
+		if (posX != 0)
+		{
+			if (posX > 0)
+			{
+				HitBox.Position = new Vector2(18.5f, 0);
+			}
+			else if (posX < 0)
+			{
+				HitBox.Position = new Vector2(-18.5f, 0);
+			}
+		}
 
+		if (posY != 0)
+		{
+			if (posY == -1)
+			{
+				HitBox.Position = new Vector2(0, -12f);
+			}
+			else if (posY == 1)
+			{
+				HitBox.Position = new Vector2(0, 9f);
+			}
+		}
+	}
 
 
 
 
 	public void AttackIsOver()
 	{
-		isAttacking = false;
-		Speed = 120f;
 		GD.Print("Attack is over");
+		isAttacking = false;
+		Speed = Speed + 90f;
+		isAttackReady = true;
 	}
 
 	public void AnimationHasChanged()
@@ -162,14 +208,31 @@ public partial class Player : CharacterBody2D
 		if (GetLastMotion().Y < 0)
 		{
 			DirectionMoved = 2;
-			GD.Print("motion recieved: +Y");
+			GD.Print("motion recieved: -Y");
 		}
 		if (GetLastMotion().Y > 0)
 		{
 			DirectionMoved = 3;
-			GD.Print("motion recieved: -Y");
+
+			GD.Print("motion recieved: +Y");
 		}
 	}
 
+	public void OnAreaEntered(Area2D hitbox)
+	{
+
+		{
+			areaOverlapping = true;
+		}
+
+	}
+
+	public void OnAreaExit(Area2D hitbox)
+	{
+
+		{
+			areaOverlapping = false;
+		}
+	}
 
 }

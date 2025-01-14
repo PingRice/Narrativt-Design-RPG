@@ -98,3 +98,4 @@ shape = SubResource("CapsuleShape2D_prmxh")
 debug_color = Color(0.983236, 0, 0.354901, 0.42)
 
 [connection signal="area_entered" from="EnemyHurtbox" to="." method="OnAreaEntered"]
+[connection signal="area_exited" from="EnemyHurtbox" to="." method="OnAreaExit"]
