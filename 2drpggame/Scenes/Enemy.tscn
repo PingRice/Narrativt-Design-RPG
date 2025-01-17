@@ -53,7 +53,7 @@ height = 26.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_k5jh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -70,13 +70,17 @@ initialState = NodePath("PatrolState")
 
 [node name="PatrolState" type="Node" parent="FSM" node_paths=PackedStringArray("waypoints")]
 script = ExtResource("3_qtn2d")
+visibilityRange = 200.0
 waypoints = []
 
 [node name="ChaseState" type="Node" parent="FSM"]
 script = ExtResource("4_eoedq")
+visibilityRange = 200.0
+attackRange = 30.0
 
 [node name="AttackState" type="Node" parent="FSM"]
 script = ExtResource("5_ikmae")
+attackRange = 30.0
 
 [node name="Timer" type="Timer" parent="FSM/AttackState"]
 
@@ -89,7 +93,7 @@ frame_progress = 0.322268
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
 position = Vector2(0, 4)
