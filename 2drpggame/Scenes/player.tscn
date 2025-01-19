@@ -1,8 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://b1m2yojleotwt"]
+[gd_scene load_steps=55 format=3 uid="uid://b1m2yojleotwt"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_5a8xb"]
 [ext_resource type="Texture2D" uid="uid://dgyctj2fsrdv3" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="2_7t7ae"]
-[ext_resource type="Script" path="res://Scripts/SwordHitboxLeftRight.cs" id="3_p24dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rief8"]
 atlas = ExtResource("2_7t7ae")
@@ -417,6 +416,10 @@ frame_progress = 0.340603
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.42857, -22.8571)
 zoom = Vector2(2.5, 2.5)
+limit_left = -1750
+limit_top = -30
+limit_right = 3300
+limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -435,7 +438,6 @@ debug_color = Color(0.984314, 0, 0.352941, 0.419608)
 [node name="SwordHitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("3_p24dv")
 
 [node name="SwordHitboxCol" type="CollisionShape2D" parent="SwordHitbox"]
 position = Vector2(-0.0714216, -9.53674e-07)

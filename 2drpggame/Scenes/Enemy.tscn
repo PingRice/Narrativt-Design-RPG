@@ -75,8 +75,6 @@ waypoints = []
 
 [node name="ChaseState" type="Node" parent="FSM"]
 script = ExtResource("4_eoedq")
-visibilityRange = 200.0
-attackRange = 30.0
 
 [node name="AttackState" type="Node" parent="FSM"]
 script = ExtResource("5_ikmae")
