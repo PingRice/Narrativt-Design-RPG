@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6xjlalrgdc5n"]
+
+[ext_resource type="AudioStream" uid="uid://bata6qkdrlhno" path="res://Art/Sounds/BGSoundRetro.mp3" id="1_oxj6m"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_oxj6m")
+autoplay = true
