@@ -5,7 +5,7 @@ public partial class PatrolState : State
 {
 	[Export] public float Speed = 40f;
 	//[Export] public Node2D target;
-	[Export] public float visibilityRange = 50f;
+	[Export] public float visibilityRange = 200f;
 	
 	public CharacterBody2D npc;
 	
@@ -46,7 +46,7 @@ public partial class PatrolState : State
 		// Check if Player is in range..
 		if ( npc.GlobalPosition.DistanceTo( player.GlobalPosition ) < this.visibilityRange )
 		{
-			GD.Print("Skift til ChaseState");
+			//GD.Print("Skift til ChaseState");
 			this.fsm.TransitionTo("ChaseState");
 		}
 		
