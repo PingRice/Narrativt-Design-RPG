@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=50 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://jgy7sfxsgqu5" path="res://Art/Pixel fantasy world Demo/PixelFantasyWorldMergeTileset.png" id="8_tog87"]
 [ext_resource type="Texture2D" uid="uid://x8tumacedipp" path="res://Art/Pixel fantasy world Demo/Tileset/Tileset.png" id="13_b7h2k"]
 [ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/Enemy.tscn" id="13_yc4f4"]
+[ext_resource type="PackedScene" uid="uid://bkpygw5ixu325" path="res://Scenes/health.tscn" id="17_i1ied"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yieem"]
 tile_data = PackedInt32Array(0, 131078, 3, 65536, 131078, 4, 131072, 131078, 4, 196608, 131078, 4, 262144, 131078, 4, 327680, 131078, 4, 393216, 131078, 4, 458752, 131078, 4)
@@ -16392,6 +16393,13 @@ tile_set = SubResource("TileSet_qpfjs")
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
 position = Vector2(3149, 1024)
 
+[node name="Health" parent="Player" instance=ExtResource("17_i1ied")]
+
+[node name="ProgressBar" parent="Player/Health/CanvasLayer/Control" index="0"]
+self_modulate = Color(1, 0, 0.286275, 1)
+offset_right = 235.0
+offset_bottom = 90.0
+
 [node name="Waypoint1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
 
@@ -16411,4 +16419,6 @@ player = NodePath("../../../Player")
 [node name="AttackState" parent="Enemy/FSM" index="2" node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
+[editable path="Player"]
+[editable path="Player/Health"]
 [editable path="Enemy"]
