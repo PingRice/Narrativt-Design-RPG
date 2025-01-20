@@ -27,7 +27,7 @@ public partial class Health : Node
 	
 	public override void _Ready()
 	{ 
-		_progressBar = GetNode<ProgressBar>("ProgressBar");
+		_progressBar = GetNode<ProgressBar>("CanvasLayer/Control/ProgressBar");
 		HealthPoints = StartHealth;
 	}
 }
