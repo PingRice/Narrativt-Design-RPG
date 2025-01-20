@@ -7,12 +7,15 @@ public partial class Health : Node
 	
 	public float regeneration = 1f;
 	
+	private ProgressBar _progressBar;
+	
 	public float HealthPoints
 	{
 		get { return _HealthPoints; }
 		set
 		{
 			_HealthPoints = Mathf.Clamp(value,0f,100f);
+			_progressBar.Value = _HealthPoints;
 			if(_HealthPoints <= 0f)
 			{
 				GetTree().ReloadCurrentScene();
@@ -24,7 +27,7 @@ public partial class Health : Node
 	
 	public override void _Ready()
 	{ 
-		Health health = GetNode<Health>("/root/Health");
+		_progressBar = GetNode<ProgressBar>("ProgressBar");
 		HealthPoints = StartHealth;
 	}
 }

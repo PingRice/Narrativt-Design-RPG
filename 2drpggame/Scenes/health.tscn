@@ -1,9 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkpygw5ixu325"]
-
-[ext_resource type="Script" path="res://Health.cs" id="1_6rk88"]
+[gd_scene format=3 uid="uid://bkpygw5ixu325"]
 
 [node name="Health" type="Node"]
-script = ExtResource("1_6rk88")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
