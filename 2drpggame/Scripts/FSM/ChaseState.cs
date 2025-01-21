@@ -5,8 +5,8 @@ public partial class ChaseState : State
 {
 	[Export] public float Speed = 40f;
 	[Export] public Node2D player;
-	[Export] public float visibilityRange = 50f;
-	[Export] public float attackRange = 10f;
+	[Export] public float visibilityRange = 200f;
+	[Export] public float attackRange = 30f;
 	public CharacterBody2D npc;
 
 	public override void Ready()
@@ -32,7 +32,7 @@ public partial class ChaseState : State
 
 		if (npc.GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange)
 		{
-			GD.Print("Skift til AttackState");
+			//GD.Print("Skift til AttackState");
 			this.fsm.TransitionTo("AttackState");
 		}
 

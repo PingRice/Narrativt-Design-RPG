@@ -20,7 +20,7 @@ public partial class Player : CharacterBody2D
 	{
 		aniSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		HitBox = GetNode<Area2D>("SwordHitbox");
-		GD.Print("this is my hitbox" + HitBox);
+		GD.Print("this is my sword" + HitBox);
 	}
 
 
@@ -111,10 +111,10 @@ public partial class Player : CharacterBody2D
 				Speed = Speed - 90f;
 				if (isAttackReady == true)
 				{
-					GD.Print("Attack was ready..");
+					//GD.Print("Attack was ready..");
 					if (areaOverlapping == true)
 					{
-						GD.Print("AUUUCHH.");
+						GD.Print("Damage dealt.");
 
 						isAttackReady = false;
 					}
@@ -123,35 +123,35 @@ public partial class Player : CharacterBody2D
 				if (direction.X != 0)
 				{
 					aniSprite.Play("SwordSwingLeftRight");
-					GD.Print("Attacking Left... or Right!");
+					// GD.Print("Attacking Left... or Right!");
 
 				}
 				else if (direction.Y < 0)
 				{
 					aniSprite.Play("SwordSwingUp");
-					GD.Print("Attacking upwards!");
+					// GD.Print("Attacking upwards!");
 				}
 				else if (direction.Y > 0)
 				{
 					aniSprite.Play("SwordSwingDown");
-					GD.Print("Attacking downwards!");
+					// GD.Print("Attacking downwards!");
 				}
 				else if (direction.X == 0 && direction.Y == 0)
 				{
 					if (DirectionMoved == 1)
 					{
 						aniSprite.Play("SwordSwingLeftRight");
-						GD.Print("Attacking Left... or Right!");
+						// GD.Print("Attacking Left... or Right!");
 					}
 					if (DirectionMoved == 2)
 					{
 						aniSprite.Play("SwordSwingUp");
-						GD.Print("Attacking upwards!");
+						// GD.Print("Attacking upwards!");
 					}
 					if (DirectionMoved == 3)
 					{
 						aniSprite.Play("SwordSwingDown");
-						GD.Print("Attacking downwards!");
+						// GD.Print("Attacking downwards!");
 					}
 				}
 			}
@@ -192,7 +192,7 @@ public partial class Player : CharacterBody2D
 
 	public void AttackIsOver()
 	{
-		GD.Print("Attack is over");
+		// GD.Print("Attack is over");
 		isAttacking = false;
 		Speed = Speed + 90f;
 		isAttackReady = true;
@@ -203,35 +203,35 @@ public partial class Player : CharacterBody2D
 		if (GetLastMotion().X != 0)
 		{
 			DirectionMoved = 1;
-			GD.Print("motion recieved: ±X");
+			// GD.Print("motion recieved: ±X");
 		}
 		if (GetLastMotion().Y < 0)
 		{
 			DirectionMoved = 2;
-			GD.Print("motion recieved: -Y");
+			// GD.Print("motion recieved: -Y");
 		}
 		if (GetLastMotion().Y > 0)
 		{
 			DirectionMoved = 3;
-
-			GD.Print("motion recieved: +Y");
+			// GD.Print("motion recieved: +Y");
 		}
 	}
 
 	public void OnAreaEntered(Area2D hitbox)
 	{
-
-		{
-			areaOverlapping = true;
-		}
-
+		areaOverlapping = true;
 	}
 
 	public void OnAreaExit(Area2D hitbox)
 	{
+		areaOverlapping = false;
+	}
 
+	public void PlayerHurtboxEntered(Area2D area)
+	{
+		if (area.Name == "EnemyHurtbox")
 		{
-			areaOverlapping = false;
+			GD.Print("Hit!");
 		}
 	}
 

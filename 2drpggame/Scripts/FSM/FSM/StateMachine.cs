@@ -16,7 +16,7 @@ public partial class StateMachine : Node {
 	{
 		if (npc == null) 
 		{
-			GD.Print("You forgot to assign an npc to the statemachine..");
+			GD.Print("You forgot to assign an npc to the statemachine...");
 		}
 		
 		_states = new Dictionary<string, State>();
