@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dw6cmnhw3flri"]
+
+[ext_resource type="Texture2D" uid="uid://qri02ylm26ff" path="res://Art/NPC/old_man/old_man/16x16.png" id="1_3ailq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ibf4"]
+atlas = ExtResource("1_3ailq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nj66"]
+atlas = ExtResource("1_3ailq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h4go"]
+atlas = ExtResource("1_3ailq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38ahy"]
+atlas = ExtResource("1_3ailq")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yj12r"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_8ibf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nj66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h4go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38ahy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcutp"]
+size = Vector2(10.6667, 7.33334)
+
+[node name="OldMan" type="StaticBody2D"]
+position = Vector2(446, 317)
+scale = Vector2(1.5, 1.5)
+
+[node name="OldMan" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yj12r")
+autoplay = "default"
+frame_progress = 0.631274
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.33333)
+shape = SubResource("RectangleShape2D_qcutp")

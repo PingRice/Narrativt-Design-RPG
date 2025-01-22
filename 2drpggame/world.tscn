@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=61 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -20,6 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://dpokrv4hd1i5" path="res://Art/Pixel fantasy world Demo/RPGLilleHus.png" id="16_c6s4c"]
 [ext_resource type="Texture2D" uid="uid://dtqxhkask636f" path="res://Art/Pixel fantasy world Demo/RPGStortHus.png" id="17_3ntic"]
 [ext_resource type="Texture2D" uid="uid://bqofm5ts05dvx" path="res://Art/Totem/Totem structurestestfærdig.png" id="18_i3en7"]
+[ext_resource type="PackedScene" uid="uid://dg6i0o1ggwn8t" path="res://Scenes/hood_man.tscn" id="21_u8rmj"]
+[ext_resource type="PackedScene" uid="uid://dw6cmnhw3flri" path="res://Scenes/old_man.tscn" id="22_vjyr0"]
+[ext_resource type="PackedScene" uid="uid://exsjxc3p6ekf" path="res://Scenes/forest_man.tscn" id="23_h4n7y"]
+[ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/ghost.tscn" id="24_ai7ut"]
+[ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/elf.tscn" id="25_0t5x0"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yieem"]
 tile_data = PackedInt32Array(0, 131078, 3, 65536, 131078, 4, 131072, 131078, 4, 196608, 131078, 4, 262144, 131078, 4, 327680, 131078, 4, 393216, 131078, 4, 458752, 131078, 4)
@@ -16508,7 +16513,7 @@ tile_map_data = PackedByteArray("AAACAZQAAAAAAAAAAAAmAZQAAAAWAAAAAABJAZQAAAAsAAA
 tile_set = SubResource("TileSet_yv2mj")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
-position = Vector2(501, 2648)
+position = Vector2(427, 307)
 
 [node name="Waypoint1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
@@ -16528,5 +16533,21 @@ player = NodePath("../../../Player")
 
 [node name="AttackState" parent="Enemy/FSM" index="2" node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
+
+[node name="NPC" type="Node2D" parent="."]
+
+[node name="HoodMan" parent="NPC" instance=ExtResource("21_u8rmj")]
+
+[node name="OldMan" parent="NPC" instance=ExtResource("22_vjyr0")]
+position = Vector2(367, 314)
+
+[node name="ForestMan" parent="NPC" instance=ExtResource("23_h4n7y")]
+position = Vector2(739, 1713)
+
+[node name="Ghost" parent="NPC" instance=ExtResource("24_ai7ut")]
+position = Vector2(1766, 774)
+
+[node name="Elf" parent="NPC" instance=ExtResource("25_0t5x0")]
+position = Vector2(42, 2992)
 
 [editable path="Enemy"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://exsjxc3p6ekf"]
+
+[ext_resource type="Texture2D" uid="uid://bqvknst2lc05k" path="res://Art/NPC/hero1Skov.png" id="1_4uias"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shwrn"]
+size = Vector2(9.33333, 9.33333)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60sdq"]
+atlas = ExtResource("1_4uias")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8tfy"]
+atlas = ExtResource("1_4uias")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfkh5"]
+atlas = ExtResource("1_4uias")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4cy88"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_60sdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8tfy")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_dfkh5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="ForestMan" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.666667, 3.33333)
+shape = SubResource("RectangleShape2D_shwrn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4cy88")
+autoplay = "default"
+frame_progress = 0.216712

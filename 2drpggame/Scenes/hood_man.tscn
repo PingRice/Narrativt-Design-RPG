@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://dg6i0o1ggwn8t"]
+
+[ext_resource type="Texture2D" uid="uid://ddhjh6eyleps4" path="res://Art/NPC/Hooded CharacterØrken.png" id="1_ms0v6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2s08"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnhko"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecrtg"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uqm5"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x61uw"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bghe"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo5l4"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_echyw"]
+atlas = ExtResource("1_ms0v6")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4k5p"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_j2s08")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_qnhko")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ecrtg")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6uqm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x61uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bghe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo5l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_echyw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5q7j"]
+size = Vector2(8.74999, 11.1765)
+
+[node name="HoodMan" type="StaticBody2D"]
+position = Vector2(-144, 728)
+scale = Vector2(1.7, 1.7)
+
+[node name="HoodMan" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e4k5p")
+autoplay = "default"
+frame_progress = 0.783335
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.208321, 4.41171)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_l5q7j")
