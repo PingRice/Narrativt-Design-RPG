@@ -84,6 +84,7 @@ animations = [{
 }]
 
 [node name="Elf" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4.5)

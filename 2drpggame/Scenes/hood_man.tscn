@@ -70,6 +70,7 @@ animations = [{
 size = Vector2(8.74999, 11.1765)
 
 [node name="HoodMan" type="StaticBody2D"]
+y_sort_enabled = true
 position = Vector2(-144, 728)
 scale = Vector2(1.7, 1.7)
 
@@ -80,5 +81,4 @@ frame_progress = 0.783335
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.208321, 4.41171)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_l5q7j")

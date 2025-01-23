@@ -35,6 +35,7 @@ animations = [{
 }]
 
 [node name="ForestMan" type="StaticBody2D"]
+y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -42,6 +43,7 @@ position = Vector2(-0.666667, 3.33333)
 shape = SubResource("RectangleShape2D_shwrn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_4cy88")
 autoplay = "default"
 frame_progress = 0.216712

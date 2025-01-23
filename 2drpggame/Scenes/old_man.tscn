@@ -42,14 +42,17 @@ animations = [{
 size = Vector2(10.6667, 7.33334)
 
 [node name="OldMan" type="StaticBody2D"]
-position = Vector2(446, 317)
+y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 
 [node name="OldMan" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -4.66667)
 sprite_frames = SubResource("SpriteFrames_yj12r")
 autoplay = "default"
 frame_progress = 0.631274
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.33333)
+y_sort_enabled = true
+position = Vector2(0, -0.333342)
 shape = SubResource("RectangleShape2D_qcutp")
