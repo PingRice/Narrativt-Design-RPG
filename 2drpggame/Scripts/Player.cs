@@ -16,7 +16,8 @@ public partial class Player : CharacterBody2D
 	public Area2D HitBox;
 	public float StartHealth = 100f;
 	private ProgressBar _progressBar;
-	
+	public float Damage = 25f;
+
 	public float HitPoints
 	{
 		get { return _HitPoints; }
@@ -32,6 +33,8 @@ public partial class Player : CharacterBody2D
 	}
 	private float _HitPoints = 100f;
 	
+	[Signal]
+	public delegate void DamageSignalEventHandler(float Damage);
 	
 	public override void _Ready()
 	{
@@ -133,8 +136,8 @@ public partial class Player : CharacterBody2D
 					//GD.Print("Attack was ready..");
 					if (areaOverlapping == true)
 					{
-						GD.Print("Damage dealt.");
-
+						GD.Print("SENDER SIGNAL TIL ENEMY : Damage dealt.");
+						EmitSignal(SignalName.DamageSignal, this.Damage);
 						isAttackReady = false;
 					}
 				}
@@ -250,7 +253,9 @@ public partial class Player : CharacterBody2D
 	{
 		if (area.Name == "EnemyHurtbox")
 		{
-			GD.Print("Hit!");
+			GD.Print("Enemy hit the player!");
+			//HitPoints = HitPoints - Damage;
+			GD.Print("Player health: " + HitPoints);
 		}
 	}
 
