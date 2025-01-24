@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SneNøgle : Area2D
+public partial class ØrkenNøgle : Area2D
 {
 	Sprite2D ani;
 	bool pickedUp = false; 
@@ -24,10 +24,15 @@ public partial class SneNøgle : Area2D
 			pickedUp = true;
 			GD.Print("Key Collected...");
 			ani.Visible = false;		
-			GetNode<Global>("/root/Global").harSneNøgle = true;
-			GD.Print("SneNøgle indsamlet...");
+			GetNode<Global>("/root/Global").harØrkenNøgle = true;
+			GD.Print("ØrkenNøgle indsamlet...");
 		}
 	
 	//QueueFree();
+	/*
+	GetNode<Global>("/root/Global").ScoreAdd(100);
+	
+	GetNode<AudioStreamPlayer2D>("PickupCoin").Play();
+	*/
 	}
 }

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://2fj127qp7d8v"]
+
+[ext_resource type="Texture2D" uid="uid://db1yls7yl1d0" path="res://Art/Totem/Key Items 16x16/Key Items 16x16/02.png" id="1_0cdhp"]
+[ext_resource type="Script" path="res://Scripts/ØrkenNøgle.cs" id="1_yl1se"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8syo6"]
+radius = 8.0
+
+[node name="ØrkenNøgle" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_yl1se")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0cdhp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8syo6")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

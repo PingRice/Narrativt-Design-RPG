@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=70 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -28,6 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/ghost.tscn" id="24_ai7ut"]
 [ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/elf.tscn" id="25_0t5x0"]
 [ext_resource type="PackedScene" uid="uid://dbqbg5o1lc0a8" path="res://Scenes/sne_nøgle.tscn" id="28_dqvwc"]
+[ext_resource type="PackedScene" uid="uid://bfx2fnv5q42wa" path="res://Scenes/skov_nøgle.tscn" id="29_sdomv"]
+[ext_resource type="PackedScene" uid="uid://2fj127qp7d8v" path="res://Scenes/ørken_nøgle.tscn" id="30_5lqt3"]
+[ext_resource type="PackedScene" uid="uid://ldklt866jl17" path="res://Scenes/totem_area.tscn" id="31_dq82m"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yieem"]
 tile_data = PackedInt32Array(0, 131078, 3, 65536, 131078, 4, 131072, 131078, 4, 196608, 131078, 4, 262144, 131078, 4, 327680, 131078, 4, 393216, 131078, 4, 458752, 131078, 4)
@@ -16549,7 +16552,7 @@ tile_map_data = PackedByteArray("AADhACz/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_4gh44")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
-position = Vector2(2870, 1194)
+position = Vector2(-1452, 493)
 
 [node name="Waypoint1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
@@ -16590,5 +16593,14 @@ position = Vector2(42, 2992)
 
 [node name="SneNøgle" parent="Nøgler" instance=ExtResource("28_dqvwc")]
 position = Vector2(2802, 1194)
+
+[node name="SkovNøgle" parent="Nøgler" instance=ExtResource("29_sdomv")]
+position = Vector2(1197, 2761)
+
+[node name="ØrkenNøgle" parent="Nøgler" instance=ExtResource("30_5lqt3")]
+position = Vector2(-1438, 410)
+
+[node name="TotemArea" parent="." instance=ExtResource("31_dq82m")]
+position = Vector2(426, 249)
 
 [editable path="Enemy"]
