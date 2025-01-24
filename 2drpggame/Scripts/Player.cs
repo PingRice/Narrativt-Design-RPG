@@ -14,13 +14,32 @@ public partial class Player : CharacterBody2D
 	public bool isAttackReady = true;
 	bool areaOverlapping = false;
 	public Area2D HitBox;
-
-
+	public float StartHealth = 100f;
+	private ProgressBar _progressBar;
+	
+	public float HitPoints
+	{
+		get { return _HitPoints; }
+		set
+		{
+			_HitPoints = Mathf.Clamp(value,0f,100f);
+			_progressBar.Value = _HitPoints;
+			if(_HitPoints <= 0f)
+			{
+				GetTree().ReloadCurrentScene();
+			}
+		}
+	}
+	private float _HitPoints = 100f;
+	
+	
 	public override void _Ready()
 	{
 		aniSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		HitBox = GetNode<Area2D>("SwordHitbox");
 		GD.Print("this is my sword" + HitBox);
+		_progressBar = GetNode<ProgressBar>("CanvasLayer/Control/ProgressBar");
+		HitPoints = StartHealth;
 	}
 
 
