@@ -1,4 +1,4 @@
-using Godot;
+/*using Godot;
 using System;
 
 public partial class Health : Node
@@ -31,3 +31,4 @@ public partial class Health : Node
 		HealthPoints = StartHealth;
 	}
 }
+*/
