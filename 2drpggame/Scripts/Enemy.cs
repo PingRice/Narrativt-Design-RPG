@@ -16,7 +16,6 @@ public partial class Enemy : CharacterBody2D
 		set
 		{
 			_HitPoints = Mathf.Clamp(value,0f,100f);
-			_progressBar.Value = _HitPoints;
 			if(_HitPoints <= 0f)
 			{
 				GetTree().ReloadCurrentScene();
@@ -29,7 +28,6 @@ public partial class Enemy : CharacterBody2D
 	public void _Ready()
 	{
 		aniSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		_progressBar = GetNode<ProgressBar>("CanvasLayer/Control/ProgressBar");
 		HitPoints = StartHealth;
 	}
 
