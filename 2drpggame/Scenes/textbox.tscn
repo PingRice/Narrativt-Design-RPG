@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfmrhgjdrjudn"]
+
+[ext_resource type="Texture2D" uid="uid://ccdpetydri8bq" path="res://Art/ColorBoxArt/black.png" id="1_jeb1y"]
+[ext_resource type="Script" path="res://Scripts/TextBox.cs" id="2_5ccrf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xnm1u"]
+texture = ExtResource("1_jeb1y")
+
+[sub_resource type="Theme" id="Theme_jvx0g"]
+Panel/styles/panel = SubResource("StyleBoxTexture_xnm1u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fwvnc"]
+texture = ExtResource("1_jeb1y")
+
+[sub_resource type="Theme" id="Theme_42m0p"]
+Panel/styles/panel = SubResource("StyleBoxTexture_fwvnc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_721jg"]
+
+[sub_resource type="FontFile" id="FontFile_qxjrw"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_su34k"]
+default_font = SubResource("FontFile_qxjrw")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/styles/normal = SubResource("StyleBoxTexture_721jg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_f8aln"]
+
+[node name="TextNode" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 46.0
+offset_top = 34.0
+offset_right = 371.0
+offset_bottom = 229.0
+theme = SubResource("Theme_jvx0g")
+script = ExtResource("2_5ccrf")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_42m0p")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_su34k")
+label_settings = SubResource("LabelSettings_f8aln")

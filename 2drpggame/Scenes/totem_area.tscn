@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ldklt866jl17"]
+[gd_scene load_steps=4 format=3 uid="uid://ldklt866jl17"]
 
 [ext_resource type="Script" path="res://Scripts/TotemArea.cs" id="1_8is7h"]
+[ext_resource type="PackedScene" uid="uid://bfmrhgjdrjudn" path="res://Scenes/textbox.tscn" id="2_d8p1y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vq8hj"]
 radius = 47.0956
@@ -12,5 +13,7 @@ script = ExtResource("1_8is7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vq8hj")
+
+[node name="TextNode" parent="." instance=ExtResource("2_d8p1y")]
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
