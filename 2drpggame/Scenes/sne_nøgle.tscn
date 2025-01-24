@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbqbg5o1lc0a8"]
+
+[ext_resource type="Texture2D" uid="uid://xoceyioixvcr" path="res://Art/Totem/Key Items 16x16/Key Items 16x16/00.png" id="1_bs0hj"]
+[ext_resource type="Script" path="res://Scripts/SneNøgle.cs" id="1_jtbmt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bwp7"]
+radius = 12.0416
+
+[node name="SneNøgle" type="Area2D"]
+script = ExtResource("1_jtbmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bs0hj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7bwp7")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
