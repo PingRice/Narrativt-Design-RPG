@@ -12,6 +12,11 @@ public partial class Enemy : CharacterBody2D
 	Vector2 direction;
 	public float StartHealth = 100f;
 	private ProgressBar _progressBar;
+	public bool Dead = false;
+
+
+	[Signal]
+	public delegate void DeathSignalEventHandler(bool Dead);
 
 	public float HitPoints
 	{
@@ -21,14 +26,18 @@ public partial class Enemy : CharacterBody2D
 			_HitPoints = Mathf.Clamp(value, 0f, 100f);
 			if (_HitPoints <= 0f)
 			{
-				QueueFree();
+				aniSprite.Play("Death");
+				EmitSignal(SignalName.DeathSignal, this.Dead);
 			}
 		}
 
 		
 	}
 
-
+	public void AniEnd()
+	{
+		QueueFree();
+	}
 
 	private float _HitPoints = 100f;
 
@@ -39,9 +48,10 @@ public override void _Ready()
 	HitPoints = StartHealth;
 
 	player = GetNode<Player>("/root/World/Player");
-	GD.Print("Player ref: "+ player);
+	GD.Print("Player ref: " + player);
+	
 	player.DamageSignal += HandleHealthChange;
-	GD.Print("Enemy health at start" + HitPoints);
+	GD.Print("Enemy health at start: " + HitPoints);
 }
 
 public void HandleHealthChange(float DamageSignal)
@@ -60,7 +70,6 @@ public void OnAreaEntered(Area2D PlayerSword)
 	
 	if (PlayerSword.Name == "SwordHitbox")
 	{
-		GD.Print("Enemy health: " + HitPoints);
 		
 	}
 }

@@ -7,7 +7,12 @@ public partial class AttackState : State
 	[Export] public float attackRate = 1;  // numbers of attacks pr. second..
 	[Export] public float attackRange = 30; // Range of attack ...
 	public CharacterBody2D npc;
-	int EnemyAttacking = 0;
+	string EnemyAttacking;
+
+	float EnemyDamage = 12.5f;
+
+	[Signal]
+	public delegate void EnemyDamageSignalEventHandler(float EnemyDamage);
 
 	private Timer attackTimer;
 
@@ -29,10 +34,10 @@ public partial class AttackState : State
 		{
 			//GD.Print("Skift til PatrolState");
 			fsm.TransitionTo("PatrolState");
-			EnemyAttacking = 0;
+			EnemyAttacking = "not in range";
 		}
 
-		if(EnemyAttacking == 1)
+		if(EnemyAttacking == "Ready to tackle")
 		{
 			npc.MoveAndSlide();
 			npc.Velocity = this.npc.GlobalPosition.DirectionTo( player.GlobalPosition ) * 150f;
@@ -40,12 +45,13 @@ public partial class AttackState : State
 
 		if(fsm.npc.GlobalPosition.DistanceTo(player.GlobalPosition) < 2)
 		{
+			EmitSignal(SignalName.EnemyDamageSignal, this.EnemyDamage);
+			EnemyAttacking = "Bounce from recoil";	
 			
-			EnemyAttacking = 2;	
 			
 		}
 		
-		if(EnemyAttacking == 2)
+		if(EnemyAttacking == "Bounce from recoil")
 			{
 				npc.Velocity = this.npc.GlobalPosition.DirectionTo( player.GlobalPosition ) * -150.0f;
 				npc.MoveAndSlide();
@@ -58,7 +64,7 @@ public partial class AttackState : State
 		
 		if(fsm.npc.GlobalPosition.DistanceTo(player.GlobalPosition) > 2)
 		{
-			EnemyAttacking = 1;
+			EnemyAttacking = "Ready to tackle";
 		}
 	}
 

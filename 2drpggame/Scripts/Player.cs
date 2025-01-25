@@ -13,10 +13,13 @@ public partial class Player : CharacterBody2D
 	public int DirectionMoved = 1;
 	public bool isAttackReady = true;
 	bool areaOverlapping = false;
+	
 	public Area2D HitBox;
-	public float StartHealth = 100f;
+	public AttackState attackState;
+
+	[Export] public float StartHealth = 100f;
 	private ProgressBar _progressBar;
-	public float Damage = 25f;
+	[Export] public float Damage = 25f;
 
 	public float HitPoints
 	{
@@ -24,7 +27,7 @@ public partial class Player : CharacterBody2D
 		set
 		{
 			_HitPoints = Mathf.Clamp(value,0f,100f);
-			_progressBar.Value = _HitPoints;
+			//_progressBar.Value = _HitPoints;
 			if(_HitPoints <= 0f)
 			{
 				GetTree().ReloadCurrentScene();
@@ -38,6 +41,10 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Ready()
 	{
+		attackState = GetNode<AttackState>("/root/World/Enemy/FSM/AttackState");
+		GD.Print("player found attackstate: " + attackState);
+		attackState.EnemyDamageSignal += HandleHealthChange;
+		GD.Print("wasdfedrfhtgresgfrdbgwesdgfvsedfvcvdsvcdvdsvcvsdvsdvsdcvfsdvsdvsdv");
 		aniSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		HitBox = GetNode<Area2D>("SwordHitbox");
 		GD.Print("this is my sword" + HitBox);
@@ -45,6 +52,11 @@ public partial class Player : CharacterBody2D
 		HitPoints = StartHealth;
 	}
 
+	public void HandleHealthChange(float EnemyDamageSignal)
+	{
+		HitPoints = HitPoints - EnemyDamageSignal;
+		GD.Print("Player health is now: " + HitPoints);
+	}
 
 
 	public override void _PhysicsProcess(double delta)
@@ -251,12 +263,7 @@ public partial class Player : CharacterBody2D
 
 	public void PlayerHurtboxEntered(Area2D area)
 	{
-		if (area.Name == "EnemyHurtbox")
-		{
-			GD.Print("Enemy hit the player!");
-			//HitPoints = HitPoints - Damage;
-			GD.Print("Player health: " + HitPoints);
-		}
+		
 	}
 
 }

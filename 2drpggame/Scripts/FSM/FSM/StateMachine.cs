@@ -11,7 +11,8 @@ public partial class StateMachine : Node {
 
 	private Dictionary<string, State> _states;
 	private State _currentState;
-	
+	public Enemy enemy;
+
 	public override void _Ready() 
 	{
 		if (npc == null) 
@@ -35,6 +36,15 @@ public partial class StateMachine : Node {
 			_currentState.Enter();
 		}	
 		GD.Print("StateMachineIsReady...");
+
+		enemy = GetNode<Enemy>("/root/World/Enemy");
+		enemy.DeathSignal += HandleDeath;
+	}
+
+	public void HandleDeath(bool DeathSignal)
+	{
+		GD.Print("Enemy has died");
+		QueueFree();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

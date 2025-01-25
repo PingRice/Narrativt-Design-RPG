@@ -11,22 +11,22 @@
 [ext_resource type="Texture2D" uid="uid://d0ovyi5x0ggsk" path="res://Art/mystic_woods_free_2.2/MysticWoodsBGTileset.png" id="6_0ur7t"]
 [ext_resource type="Texture2D" uid="uid://td2q7yvxv7db" path="res://Art/Pixel fantasy world Demo/Chob3n1.png" id="6_24f50"]
 [ext_resource type="Texture2D" uid="uid://bm46sgx7422cb" path="res://Art/Pixel fantasy world Demo/Village hus 1.png" id="7_3ceru"]
-[ext_resource type="PackedScene" uid="uid://b1m2yojleotwt" path="res://Scenes/player.tscn" id="7_gcyco"]
+[ext_resource type="PackedScene" uid="uid://b1m2yojleotwt" path="res://Scenes/Characters/player.tscn" id="7_gcyco"]
 [ext_resource type="Texture2D" uid="uid://cevry8x4d8o5q" path="res://Art/dessertpalms.png" id="7_xpjxq"]
 [ext_resource type="Texture2D" uid="uid://dygfgdspqxcej" path="res://Art/DesertTilemapToForest.png" id="8_ht48c"]
 [ext_resource type="Texture2D" uid="uid://jgy7sfxsgqu5" path="res://Art/Pixel fantasy world Demo/PixelFantasyWorldMergeTileset.png" id="8_tog87"]
 [ext_resource type="Texture2D" uid="uid://dqcbvxv5uf0mo" path="res://Art/DessertBigRock.png" id="13_1f2d8"]
 [ext_resource type="Texture2D" uid="uid://x8tumacedipp" path="res://Art/Pixel fantasy world Demo/Tileset/Tileset.png" id="13_b7h2k"]
-[ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/Enemy.tscn" id="13_yc4f4"]
+[ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/Characters/Enemy.tscn" id="13_yc4f4"]
 [ext_resource type="Texture2D" uid="uid://dpokrv4hd1i5" path="res://Art/Pixel fantasy world Demo/RPGLilleHus.png" id="16_c6s4c"]
 [ext_resource type="Texture2D" uid="uid://dtqxhkask636f" path="res://Art/Pixel fantasy world Demo/RPGStortHus.png" id="17_3ntic"]
 [ext_resource type="Texture2D" uid="uid://bqofm5ts05dvx" path="res://Art/Totem/Totem structurestestfærdig.png" id="18_i3en7"]
 [ext_resource type="Texture2D" uid="uid://qo2vbmgnun0w" path="res://Art/Totem/Key Items 16x16/Key Items 16x16/Full Sheet.png" id="20_3q2vd"]
-[ext_resource type="PackedScene" uid="uid://dg6i0o1ggwn8t" path="res://Scenes/hood_man.tscn" id="21_u8rmj"]
-[ext_resource type="PackedScene" uid="uid://dw6cmnhw3flri" path="res://Scenes/old_man.tscn" id="22_vjyr0"]
-[ext_resource type="PackedScene" uid="uid://exsjxc3p6ekf" path="res://Scenes/forest_man.tscn" id="23_h4n7y"]
-[ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/ghost.tscn" id="24_ai7ut"]
-[ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/elf.tscn" id="25_0t5x0"]
+[ext_resource type="PackedScene" uid="uid://dg6i0o1ggwn8t" path="res://Scenes/Characters/hood_man.tscn" id="21_u8rmj"]
+[ext_resource type="PackedScene" uid="uid://dw6cmnhw3flri" path="res://Scenes/Characters/old_man.tscn" id="22_vjyr0"]
+[ext_resource type="PackedScene" uid="uid://exsjxc3p6ekf" path="res://Scenes/Characters/forest_man.tscn" id="23_h4n7y"]
+[ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/Characters/ghost.tscn" id="24_ai7ut"]
+[ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/Characters/elf.tscn" id="25_0t5x0"]
 [ext_resource type="PackedScene" uid="uid://dbqbg5o1lc0a8" path="res://Scenes/sne_nøgle.tscn" id="28_dqvwc"]
 [ext_resource type="PackedScene" uid="uid://bfx2fnv5q42wa" path="res://Scenes/skov_nøgle.tscn" id="29_sdomv"]
 [ext_resource type="PackedScene" uid="uid://2fj127qp7d8v" path="res://Scenes/ørken_nøgle.tscn" id="30_5lqt3"]
@@ -16552,7 +16552,7 @@ tile_map_data = PackedByteArray("AADhACz/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_4gh44")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
-position = Vector2(-1452, 493)
+position = Vector2(815, 1798)
 
 [node name="Waypoint1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
@@ -16603,4 +16603,5 @@ position = Vector2(-1438, 410)
 [node name="TotemArea" parent="." instance=ExtResource("31_dq82m")]
 position = Vector2(426, 249)
 
+[editable path="Player"]
 [editable path="Enemy"]

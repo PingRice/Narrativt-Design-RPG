@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bm46sgx7422cb" path="res://Art/Pixel fantasy world Demo/Village hus 1.png" id="8_8vprm"]
 [ext_resource type="Texture2D" uid="uid://bink1d71v8k2y" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/Decoration/tree_1.png" id="9_es7or"]
 [ext_resource type="Texture2D" uid="uid://jgy7sfxsgqu5" path="res://Art/Pixel fantasy world Demo/PixelFantasyWorldMergeTileset.png" id="10_6tcx3"]
-[ext_resource type="PackedScene" uid="uid://b1m2yojleotwt" path="res://Scenes/player.tscn" id="11_6ahtp"]
-[ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/Enemy.tscn" id="12_bo6r8"]
+[ext_resource type="PackedScene" uid="uid://b1m2yojleotwt" path="res://Scenes/Characters/player.tscn" id="11_6ahtp"]
+[ext_resource type="PackedScene" uid="uid://bgo4k7br87bv6" path="res://Scenes/Characters/Enemy.tscn" id="12_bo6r8"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yieem"]
 tile_data = PackedInt32Array(0, 131078, 3, 65536, 131078, 4, 131072, 131078, 4, 196608, 131078, 4, 262144, 131078, 4, 327680, 131078, 4, 393216, 131078, 4, 458752, 131078, 4)
