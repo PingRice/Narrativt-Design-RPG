@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjobhouqx3fqf"]
+
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/FSM/StateMachine.cs" id="1_jpgm3"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/PatrolState.cs" id="2_b5okd"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/ChaseState.cs" id="3_5ggcv"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/AttackState.cs" id="4_kvf1v"]
+
+[node name="FSM" type="Node"]
+script = ExtResource("1_jpgm3")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="." node_paths=PackedStringArray("waypoints")]
+script = ExtResource("2_b5okd")
+waypoints = []
+
+[node name="ChaseState" type="Node" parent="."]
+script = ExtResource("3_5ggcv")
+
+[node name="AttackState" type="Node" parent="."]
+script = ExtResource("4_kvf1v")
+
+[node name="Timer" type="Timer" parent="AttackState"]

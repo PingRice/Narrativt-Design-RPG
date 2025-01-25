@@ -9,10 +9,9 @@ public partial class AttackState : State
 	public CharacterBody2D npc;
 	string EnemyAttacking;
 
-	float EnemyDamage = 12.5f;
+	[Export] float EnemyDamage = 12.5f;
 
-	[Signal]
-	public delegate void EnemyDamageSignalEventHandler(float EnemyDamage);
+	[Signal] public delegate void EnemyDamageSignalEventHandler(float EnemyDamage);
 
 	private Timer attackTimer;
 
@@ -43,7 +42,7 @@ public partial class AttackState : State
 			npc.Velocity = this.npc.GlobalPosition.DirectionTo( player.GlobalPosition ) * 150f;
 		}
 
-		if(fsm.npc.GlobalPosition.DistanceTo(player.GlobalPosition) < 2)
+		if(fsm.npc.GlobalPosition.DistanceTo(player.GlobalPosition) < 1)
 		{
 			EmitSignal(SignalName.EnemyDamageSignal, this.EnemyDamage);
 			EnemyAttacking = "Bounce from recoil";	

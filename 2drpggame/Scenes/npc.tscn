@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://bnjcwfprxogg8"]
 
-[ext_resource type="Script" path="res://Scripts/FSM/FSM/StateMachine.cs" id="1_uxac4"]
-[ext_resource type="Script" path="res://Scripts/FSM/PatrolState.cs" id="2_uunh4"]
-[ext_resource type="Script" path="res://Scripts/FSM/ChaseState.cs" id="3_w5e6c"]
-[ext_resource type="Script" path="res://Scripts/FSM/AttackState.cs" id="4_lhbly"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/FSM/StateMachine.cs" id="1_uxac4"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/PatrolState.cs" id="2_uunh4"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/ChaseState.cs" id="3_w5e6c"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/AttackState.cs" id="4_lhbly"]
 [ext_resource type="Texture2D" uid="uid://bsqy6k8yyhfha" path="res://Art/mystic_woods_free_2.2/sprites/characters/slime.png" id="5_d73vx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxodp"]
