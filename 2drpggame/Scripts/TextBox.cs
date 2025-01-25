@@ -3,8 +3,8 @@ using System;
 
 public partial class TextBox : Control
 {
-	private string fullText = "Game has ended \n goodbye";
-	private float delay = 999999999f; // Time in seconds between each character
+	private string fullText = "Game has ended \n Goodbye";
+	private float delay = 0.05f; // Time in seconds between each character
 	private Label textLabel;
 
 	public override void _Ready()

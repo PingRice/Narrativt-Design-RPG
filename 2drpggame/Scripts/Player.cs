@@ -272,6 +272,8 @@ public partial class Player : CharacterBody2D
 		{
 			GD.Print("Spiller Hastighed lig nul");
 			Speed = 0f;
+			Position = new Vector2(400,300);
+			QueueFree();
 		}
 	}
 	

@@ -76,5 +76,5 @@ public partial class StateMachine : Node
 		_currentState.Enter();
 	}
 
-    
+	
 }
