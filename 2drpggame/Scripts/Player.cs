@@ -27,7 +27,7 @@ public partial class Player : CharacterBody2D
 		set
 		{
 			_HitPoints = Mathf.Clamp(value,0f,100f);
-			//_progressBar.Value = _HitPoints;
+			_progressBar.Value = _HitPoints;
 			if(_HitPoints <= 0f)
 			{
 				GetTree().ReloadCurrentScene();

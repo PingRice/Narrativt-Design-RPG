@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://b1m2yojleotwt"]
+[gd_scene load_steps=59 format=3 uid="uid://b1m2yojleotwt"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_5a8xb"]
 [ext_resource type="Texture2D" uid="uid://dgyctj2fsrdv3" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="2_7t7ae"]
+[ext_resource type="PackedScene" uid="uid://c2tcaotm2g0do" path="res://Scenes/canvas_layer.tscn" id="3_04yio"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rief8"]
 atlas = ExtResource("2_7t7ae")
@@ -398,6 +399,28 @@ height = 36.6987
 radius = 18.0763
 height = 47.925
 
+[sub_resource type="Theme" id="Theme_0divc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjxyy"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwr53"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.7, 0.7)
@@ -445,9 +468,26 @@ position = Vector2(-0.0714216, -9.53674e-07)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bd5v8")
 
+[node name="CanvasLayer" parent="." instance=ExtResource("3_04yio")]
+
+[node name="ProgressBar" parent="CanvasLayer/Control" index="0"]
+top_level = true
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 221.0
+offset_bottom = 86.0
+theme = SubResource("Theme_0divc")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_kjxyy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kwr53")
+
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="AnimationHasChanged"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="AttackIsOver"]
 [connection signal="area_entered" from="PlayerHurtbox" to="." method="PlayerHurtboxEntered"]
 [connection signal="body_exited" from="PlayerHurtbox" to="." method="PlayerHurtboxExit"]
 [connection signal="area_entered" from="SwordHitbox" to="." method="OnAreaEntered"]
 [connection signal="area_exited" from="SwordHitbox" to="." method="OnAreaExit"]
+
+[editable path="CanvasLayer"]
