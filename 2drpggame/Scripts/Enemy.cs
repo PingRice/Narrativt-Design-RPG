@@ -7,14 +7,16 @@ public partial class Enemy : CharacterBody2D
 	public Player player;
 	
 
-	
+	public const float Speed = 300.0f;
+	public const float JumpVelocity = -400.0f;
 	Vector2 direction;
 	public float StartHealth = 100f;
 	private ProgressBar _progressBar;
 	public bool Dead = false;
 
 
-	[Signal] public delegate void DeathSignalEventHandler(bool Dead);
+	[Signal]
+	public delegate void DeathSignalEventHandler(bool Dead);
 
 	public float HitPoints
 	{
@@ -55,6 +57,7 @@ public override void _Ready()
 public void HandleHealthChange(float DamageSignal)
 {
 	HitPoints = HitPoints - DamageSignal;
+	GD.Print("SIGNAL FROM PLAYER : Enemy health: " + HitPoints);
 }
 
 public override void _PhysicsProcess(double delta)

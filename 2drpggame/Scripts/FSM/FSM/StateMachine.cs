@@ -2,8 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic; // For at anvende Dictionary
 
-public partial class StateMachine : Node 
-{
+public partial class StateMachine : Node {
 	
 	
 	[Export] public CharacterBody2D npc; // npc controlled by this FMS
@@ -13,7 +12,6 @@ public partial class StateMachine : Node
 	private Dictionary<string, State> _states;
 	private State _currentState;
 	public Enemy enemy;
-	public Skeleton skeleton; 
 
 	public override void _Ready() 
 	{
@@ -75,6 +73,4 @@ public partial class StateMachine : Node
 		_currentState = _states[stateName];
 		_currentState.Enter();
 	}
-
-    
 }
