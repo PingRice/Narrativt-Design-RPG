@@ -16552,7 +16552,7 @@ tile_map_data = PackedByteArray("AADhACz/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_4gh44")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
-position = Vector2(815, 1798)
+position = Vector2(815, 566)
 
 [node name="Waypoint1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
@@ -16603,5 +16603,8 @@ position = Vector2(-1438, 410)
 [node name="TotemArea" parent="." instance=ExtResource("31_dq82m")]
 position = Vector2(426, 249)
 
+[connection signal="body_entered" from="TotemArea" to="Player" method="_OnTotemAreaPlayerEntered"]
+
 [editable path="Player"]
+[editable path="Player/CanvasLayer"]
 [editable path="Enemy"]

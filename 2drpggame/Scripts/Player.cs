@@ -265,5 +265,15 @@ public partial class Player : CharacterBody2D
 	{
 		
 	}
-
+	
+	//Noden "Player" er subscribed til TotemArea, body_entered. Som følge vil denne metode blive kaldt. 
+	public void _OnTotemAreaPlayerEntered(Node2D other) {
+		if (other.Name == "Player" && GetNode<Global>("/root/Global").HasWon() == true) 
+		{
+			GD.Print("Spiller Hastighed lig nul");
+			Speed = 0f;
+		}
+	}
+	
+	 
 }
