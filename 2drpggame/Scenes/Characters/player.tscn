@@ -431,10 +431,8 @@ script = ExtResource("1_5a8xb")
 position = Vector2(-1.42857, -25.7143)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0bb5w")
-animation = &"SwordSwingUp"
+animation = &"idle"
 autoplay = "idle"
-frame = 1
-frame_progress = 0.340603
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.42857, -22.8571)

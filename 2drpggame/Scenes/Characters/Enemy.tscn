@@ -1,10 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bgo4k7br87bv6"]
+[gd_scene load_steps=18 format=3 uid="uid://bgo4k7br87bv6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_k5jh6"]
-[ext_resource type="Script" path="res://Scripts/FSM/FSM/StateMachine.cs" id="2_py77i"]
-[ext_resource type="Script" path="res://Scripts/FSM/PatrolState.cs" id="3_qtn2d"]
-[ext_resource type="Script" path="res://Scripts/FSM/ChaseState.cs" id="4_eoedq"]
-[ext_resource type="Script" path="res://Scripts/FSM/AttackState.cs" id="5_ikmae"]
+[ext_resource type="PackedScene" uid="uid://cjobhouqx3fqf" path="res://Scenes/fsm.tscn" id="2_wqmlt"]
 [ext_resource type="Texture2D" uid="uid://bsqy6k8yyhfha" path="res://Art/mystic_woods_free_2.2/sprites/characters/slime.png" id="6_tkv5c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bpf7j"]
@@ -117,22 +114,7 @@ rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_bpf7j")
 
-[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("npc")]
-script = ExtResource("2_py77i")
-npc = NodePath("..")
-initialState = NodePath("PatrolState")
-
-[node name="PatrolState" type="Node" parent="FSM" node_paths=PackedStringArray("waypoints")]
-script = ExtResource("3_qtn2d")
-waypoints = []
-
-[node name="ChaseState" type="Node" parent="FSM"]
-script = ExtResource("4_eoedq")
-
-[node name="AttackState" type="Node" parent="FSM"]
-script = ExtResource("5_ikmae")
-
-[node name="Timer" type="Timer" parent="FSM/AttackState"]
+[node name="FSM" parent="." instance=ExtResource("2_wqmlt")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)

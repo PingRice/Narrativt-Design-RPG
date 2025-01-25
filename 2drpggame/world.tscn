@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=71 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bfx2fnv5q42wa" path="res://Scenes/skov_nøgle.tscn" id="29_sdomv"]
 [ext_resource type="PackedScene" uid="uid://2fj127qp7d8v" path="res://Scenes/ørken_nøgle.tscn" id="30_5lqt3"]
 [ext_resource type="PackedScene" uid="uid://ldklt866jl17" path="res://Scenes/totem_area.tscn" id="31_dq82m"]
+[ext_resource type="PackedScene" uid="uid://de8aabmm7ek4k" path="res://Scenes/Characters/skeleton.tscn" id="32_cr4ak"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yieem"]
 tile_data = PackedInt32Array(0, 131078, 3, 65536, 131078, 4, 131072, 131078, 4, 196608, 131078, 4, 262144, 131078, 4, 327680, 131078, 4, 393216, 131078, 4, 458752, 131078, 4)
@@ -16552,19 +16553,28 @@ tile_map_data = PackedByteArray("AADhACz/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_4gh44")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
+<<<<<<< Updated upstream
 position = Vector2(815, 566)
+=======
+position = Vector2(-439, 789)
+metadata/_edit_group_ = true
+>>>>>>> Stashed changes
 
-[node name="Waypoint1" type="Node2D" parent="."]
+[node name="Swamp waypoint 1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
 
-[node name="Waypoint2" type="Node2D" parent="."]
+[node name="Swamp waypoint 2" type="Node2D" parent="."]
 position = Vector2(1034, 2109)
 
 [node name="Enemy" parent="." instance=ExtResource("13_yc4f4")]
 position = Vector2(1017, 1969)
+metadata/_edit_group_ = true
+
+[node name="FSM" parent="Enemy" index="1" node_paths=PackedStringArray("npc")]
+npc = NodePath("..")
 
 [node name="PatrolState" parent="Enemy/FSM" index="0" node_paths=PackedStringArray("waypoints", "player")]
-waypoints = [NodePath("../../../Waypoint1"), NodePath("../../../Waypoint2")]
+waypoints = [NodePath("../../../Swamp waypoint 1"), NodePath("../../../Swamp waypoint 2")]
 player = NodePath("../../../Player")
 
 [node name="ChaseState" parent="Enemy/FSM" index="1" node_paths=PackedStringArray("player")]
@@ -16572,6 +16582,9 @@ player = NodePath("../../../Player")
 
 [node name="AttackState" parent="Enemy/FSM" index="2" node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
+
+[node name="AnimatedSprite2D" parent="Enemy" index="2"]
+animation = &"default"
 
 [node name="NPC" type="Node2D" parent="."]
 
@@ -16603,8 +16616,45 @@ position = Vector2(-1438, 410)
 [node name="TotemArea" parent="." instance=ExtResource("31_dq82m")]
 position = Vector2(426, 249)
 
+<<<<<<< Updated upstream
 [connection signal="body_entered" from="TotemArea" to="Player" method="_OnTotemAreaPlayerEntered"]
+=======
+[node name="Skeleton" parent="." instance=ExtResource("32_cr4ak")]
+position = Vector2(-567, 1031)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="Skeleton" index="1"]
+animation = &"DefaultIdle"
+frame = 0
+frame_progress = 0.0
+
+[node name="Skeleton FSM" parent="Skeleton" index="2" node_paths=PackedStringArray("Skeleton")]
+Skeleton = NodePath("..")
+skelInitialState = NodePath("Skeleton ChaseState")
+
+[node name="Skeleton PatrolState" parent="Skeleton/Skeleton FSM" index="0" node_paths=PackedStringArray("Waypoints", "player")]
+Waypoints = [NodePath("../../../Desert waypoint 1"), NodePath("../../../Desert waypoint 2"), NodePath("../../../Desert waypoint 3")]
+player = NodePath("../../../Player")
+
+[node name="Skeleton ChaseState" parent="Skeleton/Skeleton FSM" index="1" node_paths=PackedStringArray("player", "Skeleton")]
+player = NodePath("../../../Player")
+Skeleton = NodePath("../..")
+
+[node name="Skeleton AttackState" parent="Skeleton/Skeleton FSM" index="2" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="Desert waypoint 1" type="Node2D" parent="."]
+position = Vector2(-689, 923)
+
+[node name="Desert waypoint 2" type="Node2D" parent="."]
+position = Vector2(-436, 974)
+
+[node name="Desert waypoint 3" type="Node2D" parent="."]
+position = Vector2(-552, 1110)
+>>>>>>> Stashed changes
 
 [editable path="Player"]
 [editable path="Player/CanvasLayer"]
 [editable path="Enemy"]
+[editable path="Enemy/FSM"]
+[editable path="Skeleton"]
