@@ -21,6 +21,7 @@ public partial class TotemArea : Area2D
 			GD.Print("Alle nøgler samlet");
 			var textBox = GetNode<TextBox>("TextNode/Control");
 			textBox.ShowTextBox();
+			GetNode<AudioStreamPlayer>("/root/MusicPlayer").Stop();
 		}
 	}
 }
