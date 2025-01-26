@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
 {
-	[Export] public float Speed = 120.0f;
+	[Export] public float Speed = 1200.0f;
 	AnimatedSprite2D aniSprite;
 	bool isAttacking = false;
 	public int DirectionMoved = 1;

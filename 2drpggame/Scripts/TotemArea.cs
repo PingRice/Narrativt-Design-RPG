@@ -3,10 +3,12 @@ using System;
 
 public partial class TotemArea : Area2D
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export] private string fullText = "";
+	private Label textLabel;
+	
 	public override void _Ready()
 	{
-		
+		textLabel = GetNode<Label>("TextNode/Control/Label");
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +22,7 @@ public partial class TotemArea : Area2D
 		{
 			GD.Print("Alle nøgler samlet");
 			var textBox = GetNode<TextBox>("TextNode/Control");
-			textBox.ShowTextBox();
+			textBox.ShowTextBox1();
 			GetNode<AudioStreamPlayer>("/root/MusicPlayer").Stop();
 		}
 	}

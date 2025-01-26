@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=73 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://exsjxc3p6ekf" path="res://Scenes/Characters/forest_man.tscn" id="23_h4n7y"]
 [ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/Characters/ghost.tscn" id="24_ai7ut"]
 [ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/Characters/elf.tscn" id="25_0t5x0"]
+[ext_resource type="Script" path="res://Scenes/Characters/ForestMan.cs" id="26_edjao"]
+[ext_resource type="PackedScene" uid="uid://bfmrhgjdrjudn" path="res://Scenes/textbox.tscn" id="27_f1i88"]
 [ext_resource type="PackedScene" uid="uid://dbqbg5o1lc0a8" path="res://Scenes/sne_nøgle.tscn" id="28_dqvwc"]
 [ext_resource type="PackedScene" uid="uid://bfx2fnv5q42wa" path="res://Scenes/skov_nøgle.tscn" id="29_sdomv"]
 [ext_resource type="PackedScene" uid="uid://2fj127qp7d8v" path="res://Scenes/ørken_nøgle.tscn" id="30_5lqt3"]
@@ -16511,6 +16513,9 @@ texture = ExtResource("20_3q2vd")
 [sub_resource type="TileSet" id="TileSet_4gh44"]
 sources/2 = SubResource("TileSetAtlasSource_jp02k")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6uahr"]
+radius = 34.0261
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 metadata/_edit_horizontal_guides_ = [-353.0]
@@ -16572,6 +16577,35 @@ position = Vector2(367, 314)
 
 [node name="ForestMan" parent="NPC" instance=ExtResource("23_h4n7y")]
 position = Vector2(739, 1713)
+script = ExtResource("26_edjao")
+
+[node name="TextNode" parent="NPC/ForestMan" instance=ExtResource("27_f1i88")]
+
+[node name="Control" parent="NPC/ForestMan/TextNode" index="0"]
+z_index = 5
+offset_left = -197.0
+offset_top = -139.0
+offset_right = 185.0
+offset_bottom = -13.0
+
+[node name="Panel" parent="NPC/ForestMan/TextNode/Control" index="0"]
+anchors_preset = -1
+anchor_left = 0.0882353
+anchor_top = 0.113208
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="NPC/ForestMan/TextNode/Control" index="1"]
+anchors_preset = -1
+anchor_left = 0.0712329
+anchor_top = 0.147826
+theme_override_font_sizes/font_size = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="Interact1" type="Area2D" parent="NPC/ForestMan/TextNode"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/ForestMan/TextNode/Interact1"]
+shape = SubResource("CircleShape2D_6uahr")
 
 [node name="Ghost" parent="NPC" instance=ExtResource("24_ai7ut")]
 position = Vector2(1766, 774)
@@ -16609,5 +16643,6 @@ vertical_alignment = 1
 [editable path="Player"]
 [editable path="Player/CanvasLayer"]
 [editable path="Enemy"]
+[editable path="NPC/ForestMan/TextNode"]
 [editable path="TotemArea"]
 [editable path="TotemArea/TextNode"]
