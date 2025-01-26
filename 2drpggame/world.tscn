@@ -16634,9 +16634,23 @@ offset_top = -247.0
 offset_right = 1520.0
 offset_bottom = 811.0
 
+[node name="Panel" parent="TotemArea/TextNode/Control" index="0"]
+offset_left = 93.0
+offset_top = 30.0
+offset_right = -257.0
+offset_bottom = -3.0
+
 [node name="Label" parent="TotemArea/TextNode/Control" index="1"]
+offset_left = 158.0
+offset_top = 198.0
+offset_right = -372.0
+offset_bottom = -126.0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(840, 609)
+zoom = Vector2(1.6, 1.6)
 
 [connection signal="body_entered" from="TotemArea" to="Player" method="_OnTotemAreaPlayerEntered"]
 
