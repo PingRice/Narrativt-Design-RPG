@@ -7,6 +7,8 @@ public partial class TextBox : Control
 	private Label textLabel;
 	private string fullText = "";
 	int skriver = 0;
+	int skriver2 = 0;
+	int skriver3 = 0;
 	public override void _Ready()
 	{
 		textLabel = GetNode<Label>("Label");
@@ -28,8 +30,28 @@ public partial class TextBox : Control
 		{
 		Show();
 		ShowText();
-		fullText = "H..Hi, stranger! \n What a surprise it is to see a villager out here in the woods. \n Usually, nobody journeys to this forest. \n You need to be careful - The slimes do NOT want to be friends. \n Come to think of it. They might be defending something. \n Oh well, that’s not my concern. \n Perhaps you can investigate what they’re hiding.  Be safe, stranger!";
+		fullText = "HHi, stranger! \n What a surprise it is to see a villager out here in the woods. \n Usually, nobody journeys to this forest. \n You need to be careful - The slimes do NOT want to be friends. \n Come to think of it. They might be defending something. \n Oh well, that’s not my concern. \n Perhaps you can investigate what they’re hiding.  Be safe, stranger!";
 		textLabel.Text = "";
+		}
+	}
+	public void ShowTextBox3()
+	{
+		if (skriver2 == 0)
+		{
+			Show();
+			ShowText();
+			fullText = "HHello, traveller! \n Oh my, it’s been ages since I’ve last encountered humans in these surroundings. \n I think I know why you’ve ventured all this way… \n You wish to know the true nature of the totems, yes? \n Ah, you do strike me as the curious type, indeed. I’ll tell you what; \n Somewhere around these frosty landscapes lives a group of skeletons. \n I believe they guard an ancient key. \n Defeat them, and the key can be yours. \n I wish you good luck, traveller! ";
+			textLabel.Text = "";
+		}
+	}
+	public void ShowTextBox4()
+	{
+		if (skriver3 == 0)
+		{
+			Show();
+			ShowText();
+			fullText = "WWoah, easy there, voyager! I suspected you were a mirage. \n Your kind are very seldom seen in these scorching dunes. \n You must be searching for something, knowledge and meaning? \n Listen, there may be an old remnant amongst all these grains of sand. \n It can aid you… but be warned! It is likely protected. \n Overcome those that stand in your way, and take it!";
+			textLabel.Text = "";
 		}
 	}
 	public void HideTextBox()
@@ -38,6 +60,17 @@ public partial class TextBox : Control
 		skriver = 1;
 	}
 	
+	public void HideTextBox2()
+	{
+		Hide();
+		skriver2 = 1;
+	}
+	
+	public void HideTextBox3()
+	{
+		Hide();
+		skriver3 = 1;
+	}
 	private async void ShowText()
 	{
 		foreach (char c in fullText)

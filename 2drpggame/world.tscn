@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=77 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -26,10 +26,12 @@
 [ext_resource type="PackedScene" uid="uid://dw6cmnhw3flri" path="res://Scenes/Characters/old_man.tscn" id="22_vjyr0"]
 [ext_resource type="PackedScene" uid="uid://exsjxc3p6ekf" path="res://Scenes/Characters/forest_man.tscn" id="23_h4n7y"]
 [ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/Characters/ghost.tscn" id="24_ai7ut"]
+[ext_resource type="Script" path="res://Scenes/Characters/HoodMan.cs" id="24_d05pa"]
 [ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/Characters/elf.tscn" id="25_0t5x0"]
 [ext_resource type="Script" path="res://Scenes/Characters/ForestMan.cs" id="26_edjao"]
 [ext_resource type="PackedScene" uid="uid://bfmrhgjdrjudn" path="res://Scenes/textbox.tscn" id="27_f1i88"]
 [ext_resource type="PackedScene" uid="uid://dbqbg5o1lc0a8" path="res://Scenes/sne_nøgle.tscn" id="28_dqvwc"]
+[ext_resource type="Script" path="res://Scenes/Characters/Ghost.cs" id="29_21skt"]
 [ext_resource type="PackedScene" uid="uid://bfx2fnv5q42wa" path="res://Scenes/skov_nøgle.tscn" id="29_sdomv"]
 [ext_resource type="PackedScene" uid="uid://2fj127qp7d8v" path="res://Scenes/ørken_nøgle.tscn" id="30_5lqt3"]
 [ext_resource type="PackedScene" uid="uid://ldklt866jl17" path="res://Scenes/totem_area.tscn" id="31_dq82m"]
@@ -16513,8 +16515,14 @@ texture = ExtResource("20_3q2vd")
 [sub_resource type="TileSet" id="TileSet_4gh44"]
 sources/2 = SubResource("TileSetAtlasSource_jp02k")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6uahr"]
-radius = 34.0261
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gmil"]
+size = Vector2(53.5294, 34.1176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxql4"]
+size = Vector2(39.3333, 30.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcx78"]
+size = Vector2(34, 29)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -16571,6 +16579,24 @@ position = Vector2(1017, 1969)
 [node name="NPC" type="Node2D" parent="."]
 
 [node name="HoodMan" parent="NPC" instance=ExtResource("21_u8rmj")]
+script = ExtResource("24_d05pa")
+
+[node name="TextNode" parent="NPC/HoodMan" instance=ExtResource("27_f1i88")]
+
+[node name="Control" parent="NPC/HoodMan/TextNode" index="0"]
+z_index = 50
+offset_left = -137.0
+offset_top = -93.0
+offset_right = 219.0
+offset_bottom = -4.0
+
+[node name="Interact3" type="Area2D" parent="NPC/HoodMan/TextNode"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/HoodMan/TextNode/Interact3"]
+position = Vector2(2.05882, 7.05881)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_2gmil")
 
 [node name="OldMan" parent="NPC" instance=ExtResource("22_vjyr0")]
 position = Vector2(367, 314)
@@ -16605,10 +16631,28 @@ metadata/_edit_use_anchors_ = true
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/ForestMan/TextNode/Interact1"]
-shape = SubResource("CircleShape2D_6uahr")
+position = Vector2(-0.333344, 2.00024)
+shape = SubResource("RectangleShape2D_oxql4")
 
 [node name="Ghost" parent="NPC" instance=ExtResource("24_ai7ut")]
 position = Vector2(1766, 774)
+script = ExtResource("29_21skt")
+
+[node name="TextNode" parent="NPC/Ghost" instance=ExtResource("27_f1i88")]
+
+[node name="Control" parent="NPC/Ghost/TextNode" index="0"]
+z_index = 40
+offset_left = -182.0
+offset_top = -162.0
+offset_right = 240.0
+offset_bottom = -14.0
+
+[node name="Interact2" type="Area2D" parent="NPC/Ghost/TextNode"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Ghost/TextNode/Interact2"]
+position = Vector2(-2, 4.5)
+shape = SubResource("RectangleShape2D_wcx78")
 
 [node name="Elf" parent="NPC" instance=ExtResource("25_0t5x0")]
 position = Vector2(42, 2992)
@@ -16657,6 +16701,8 @@ zoom = Vector2(1.6, 1.6)
 [editable path="Player"]
 [editable path="Player/CanvasLayer"]
 [editable path="Enemy"]
+[editable path="NPC/HoodMan/TextNode"]
 [editable path="NPC/ForestMan/TextNode"]
+[editable path="NPC/Ghost/TextNode"]
 [editable path="TotemArea"]
 [editable path="TotemArea/TextNode"]
