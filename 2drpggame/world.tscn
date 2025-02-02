@@ -16565,7 +16565,8 @@ tile_map_data = PackedByteArray("AADhACz/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_4gh44")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
-position = Vector2(815, 566)
+position = Vector2(886, 1802)
+metadata/_edit_group_ = true
 
 [node name="Waypoint1" type="Node2D" parent="."]
 position = Vector2(1090, 1866)
@@ -16575,6 +16576,20 @@ position = Vector2(1034, 2109)
 
 [node name="Enemy" parent="." instance=ExtResource("13_yc4f4")]
 position = Vector2(1017, 1969)
+
+[node name="FSM" parent="Enemy" index="3" node_paths=PackedStringArray("npc")]
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" parent="Enemy/FSM" index="0" node_paths=PackedStringArray("waypoints", "player")]
+waypoints = [NodePath("../../../Waypoint1"), NodePath("../../../Waypoint2")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" parent="Enemy/FSM" index="1" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="AttackState" parent="Enemy/FSM" index="2" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
 
 [node name="NPC" type="Node2D" parent="."]
 

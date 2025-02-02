@@ -9,9 +9,8 @@ public partial class PatrolState : State
 	
 	public CharacterBody2D npc;
 	
-	[Export] 
-	public Node2D[] waypoints;
-	[Export] public CharacterBody2D player;
+	[Export] public Node2D[] waypoints;
+	public Player player;
 	
 	public int currentWaypointIndex = 0;
 	public Vector2 targetPosition;

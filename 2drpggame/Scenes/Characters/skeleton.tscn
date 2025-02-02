@@ -1,6 +1,6 @@
 [gd_scene load_steps=114 format=3 uid="uid://de8aabmm7ek4k"]
 
-[ext_resource type="Texture2D" uid="uid://co0kwnt7lksvs" path="res://Art/Pixel fantasy world Demo/Monsters/Skeleton/Skeleton-Sheet.png" id="1_620ob"]
+[ext_resource type="Texture2D" uid="uid://co0kwnt7lksvs" path="res://Scripts/Skeleton/Skeleton-Sheet.png" id="1_620ob"]
 [ext_resource type="Script" path="res://Scripts/Skeleton.cs" id="1_kup27"]
 [ext_resource type="Script" path="res://Scripts/All Statemachines/Skeleton Statemachine/SkelStateMachine.cs" id="2_fqdt2"]
 [ext_resource type="Script" path="res://Scripts/All Statemachines/Skeleton Statemachine/SkelPatrolState.cs" id="3_d3fnl"]

@@ -3,7 +3,7 @@ using System;
 
 public partial class AttackState : State
 {
-	[Export] public Node2D player;
+	public Player player;
 	[Export] public float attackRate = 1;  // numbers of attacks pr. second..
 	[Export] public float attackRange = 30; // Range of attack ...
 	public CharacterBody2D npc;
