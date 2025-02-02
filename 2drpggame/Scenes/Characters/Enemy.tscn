@@ -1,7 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bgo4k7br87bv6"]
+[gd_scene load_steps=21 format=3 uid="uid://bgo4k7br87bv6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_k5jh6"]
-[ext_resource type="PackedScene" uid="uid://cjobhouqx3fqf" path="res://Scenes/fsm.tscn" id="2_wqmlt"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/FSM/StateMachine.cs" id="3_mvn1i"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/PatrolState.cs" id="4_aks8f"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/ChaseState.cs" id="5_u82xf"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/AttackState.cs" id="6_hqrux"]
 [ext_resource type="Texture2D" uid="uid://bsqy6k8yyhfha" path="res://Art/mystic_woods_free_2.2/sprites/characters/slime.png" id="6_tkv5c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bpf7j"]
@@ -114,8 +117,6 @@ rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_bpf7j")
 
-[node name="FSM" parent="." instance=ExtResource("2_wqmlt")]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_v7pan")
@@ -131,6 +132,21 @@ position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_prmxh")
 debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_mvn1i")
+
+[node name="PatrolState" type="Node" parent="FSM" node_paths=PackedStringArray("waypoints")]
+script = ExtResource("4_aks8f")
+waypoints = []
+
+[node name="ChaseState" type="Node" parent="FSM"]
+script = ExtResource("5_u82xf")
+
+[node name="AttackState" type="Node" parent="FSM"]
+script = ExtResource("6_hqrux")
+
+[node name="Timer" type="Timer" parent="FSM/AttackState"]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="AniEnd"]
 [connection signal="area_entered" from="EnemyHurtbox" to="." method="OnAreaEntered"]

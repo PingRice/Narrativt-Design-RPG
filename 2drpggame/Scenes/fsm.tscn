@@ -7,7 +7,6 @@
 
 [node name="FSM" type="Node"]
 script = ExtResource("1_jpgm3")
-initialState = NodePath("PatrolState")
 
 [node name="PatrolState" type="Node" parent="." node_paths=PackedStringArray("waypoints")]
 script = ExtResource("2_b5okd")

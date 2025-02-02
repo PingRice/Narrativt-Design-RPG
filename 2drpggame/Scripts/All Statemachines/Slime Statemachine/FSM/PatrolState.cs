@@ -20,7 +20,8 @@ public partial class PatrolState : State
 //	private AnimationController aniCtrl;
 	
 	
-	public override void Ready(){
+	public override void Ready()
+	{
 		// target = GetNode<CharacterBody2D>("/root/Player");
 		// aniCtrl = GetNode<AnimationController>("/Skeleton/AnimationController");
 		npc = this.fsm.npc;
@@ -30,14 +31,17 @@ public partial class PatrolState : State
 		GD.Print("PatrolSteate ready");
 	}
 	
-	public override void Update(float delta){
+	public override void Update(float delta)
+	{
 				
 		npc.Velocity = this.npc.GlobalPosition.DirectionTo( targetPosition ) * this.Speed;
 		
-		if( npc.GlobalPosition.DistanceTo( targetPosition ) < 1.2f ){
+		if( npc.GlobalPosition.DistanceTo( targetPosition ) < 1.2f )
+		{
 			currentWaypointIndex++;
 
-			if ( currentWaypointIndex > waypoints.Length-1 ) {
+			if ( currentWaypointIndex > waypoints.Length-1 ) 
+			{
 				currentWaypointIndex = 0;
 			}
 			targetPosition = waypoints[currentWaypointIndex].GlobalPosition;

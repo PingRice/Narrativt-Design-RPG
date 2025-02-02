@@ -48,10 +48,10 @@ public partial class SkelAttackState : SkelState
 		}
 	}
 
-	public void PhysicsUpdate()
+	/*public void SkelPhysicsUpdate()
 	{
 		
-	}
+	}*/
 
 	public override void SkelExit() 
 	{

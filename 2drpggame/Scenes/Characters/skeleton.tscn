@@ -842,16 +842,18 @@ autoplay = "DefaultIdle"
 frame = 7
 frame_progress = 1.0
 
-[node name="Skeleton FSM" type="Node" parent="."]
+[node name="Skeleton FSM" type="Node" parent="." node_paths=PackedStringArray("Skeleton")]
 script = ExtResource("2_fqdt2")
+Skeleton = NodePath("..")
 skelInitialState = NodePath("Skeleton PatrolState")
 
 [node name="Skeleton PatrolState" type="Node" parent="Skeleton FSM" node_paths=PackedStringArray("Waypoints")]
 script = ExtResource("3_d3fnl")
 Waypoints = []
 
-[node name="Skeleton ChaseState" type="Node" parent="Skeleton FSM"]
+[node name="Skeleton ChaseState" type="Node" parent="Skeleton FSM" node_paths=PackedStringArray("Skeleton")]
 script = ExtResource("4_2uw8n")
+Skeleton = NodePath("../..")
 
 [node name="Skeleton AttackState" type="Node" parent="Skeleton FSM"]
 script = ExtResource("5_8p5eb")
