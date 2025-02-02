@@ -12,7 +12,7 @@ public partial class Enemy : CharacterBody2D
 	public float StartHealth = 100f;
 	private ProgressBar _progressBar;
 	public bool Dead = false;
-
+	public bool SwordOverlapping = false;
 
 	[Signal] public delegate void DeathSignalEventHandler(bool Dead);
 
@@ -34,7 +34,8 @@ public partial class Enemy : CharacterBody2D
 
 	public void AniEnd()
 	{
-		QueueFree();
+		
+		this.QueueFree();
 	}
 
 	private float _HitPoints = 100f;
@@ -54,7 +55,10 @@ public override void _Ready()
 
 public void HandleHealthChange(float DamageSignal)
 {
-	HitPoints = HitPoints - DamageSignal;
+	if(SwordOverlapping == true)
+	{
+		HitPoints = HitPoints - DamageSignal;
+	}
 }
 
 public override void _PhysicsProcess(double delta)
@@ -67,7 +71,15 @@ public void OnAreaEntered(Area2D PlayerSword)
 	
 	if (PlayerSword.Name == "SwordHitbox")
 	{
-		
+		SwordOverlapping = true;
+	}
+}
+
+public void OnAreaExit(Area2D PlayerSword)
+{
+	if (PlayerSword.Name == "SwordHitbox")
+	{
+		SwordOverlapping = false;
 	}
 }
 }

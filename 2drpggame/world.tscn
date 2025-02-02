@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://dmtkiomd2fiar"]
+[gd_scene load_steps=97 format=4 uid="uid://dmtkiomd2fiar"]
 
 [ext_resource type="Texture2D" uid="uid://dstel8lq1g4g" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge.png" id="2_5qtia"]
 [ext_resource type="Texture2D" uid="uid://cvrerwwg0hmnx" path="res://Art/free-Winter-Tileset/free-Winter-Tileset/WinterTilesetMerge - KopiDESSERT.png" id="2_5xmlu"]
@@ -24,13 +24,19 @@
 [ext_resource type="Texture2D" uid="uid://qo2vbmgnun0w" path="res://Art/Totem/Key Items 16x16/Key Items 16x16/Full Sheet.png" id="20_3q2vd"]
 [ext_resource type="PackedScene" uid="uid://dg6i0o1ggwn8t" path="res://Scenes/Characters/hood_man.tscn" id="21_u8rmj"]
 [ext_resource type="PackedScene" uid="uid://dw6cmnhw3flri" path="res://Scenes/Characters/old_man.tscn" id="22_vjyr0"]
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="23_ert3u"]
 [ext_resource type="PackedScene" uid="uid://exsjxc3p6ekf" path="res://Scenes/Characters/forest_man.tscn" id="23_h4n7y"]
 [ext_resource type="PackedScene" uid="uid://d0x76xm05fl71" path="res://Scenes/Characters/ghost.tscn" id="24_ai7ut"]
 [ext_resource type="Script" path="res://Scenes/Characters/HoodMan.cs" id="24_d05pa"]
+[ext_resource type="Texture2D" uid="uid://bsqy6k8yyhfha" path="res://Art/mystic_woods_free_2.2/sprites/characters/slime.png" id="24_srpnt"]
 [ext_resource type="PackedScene" uid="uid://c7tbs3oi8kf36" path="res://Scenes/Characters/elf.tscn" id="25_0t5x0"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/FSM/StateMachine.cs" id="25_xkc8w"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/PatrolState.cs" id="26_6tmn6"]
 [ext_resource type="Script" path="res://Scenes/Characters/ForestMan.cs" id="26_edjao"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/ChaseState.cs" id="27_7vx5v"]
 [ext_resource type="PackedScene" uid="uid://bfmrhgjdrjudn" path="res://Scenes/textbox.tscn" id="27_f1i88"]
 [ext_resource type="PackedScene" uid="uid://dbqbg5o1lc0a8" path="res://Scenes/sne_nøgle.tscn" id="28_dqvwc"]
+[ext_resource type="Script" path="res://Scripts/All Statemachines/Slime Statemachine/FSM/AttackState.cs" id="28_se3t2"]
 [ext_resource type="Script" path="res://Scenes/Characters/Ghost.cs" id="29_21skt"]
 [ext_resource type="PackedScene" uid="uid://bfx2fnv5q42wa" path="res://Scenes/skov_nøgle.tscn" id="29_sdomv"]
 [ext_resource type="PackedScene" uid="uid://2fj127qp7d8v" path="res://Scenes/ørken_nøgle.tscn" id="30_5lqt3"]
@@ -16515,6 +16521,104 @@ texture = ExtResource("20_3q2vd")
 [sub_resource type="TileSet" id="TileSet_4gh44"]
 sources/2 = SubResource("TileSetAtlasSource_jp02k")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bpf7j"]
+radius = 10.6667
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70tu8"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(0, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1exd7"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(32, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7w6k"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(64, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6y8js"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(96, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1rjb"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(128, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbmlp"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(160, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4vxs"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(192, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8sak"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7gce"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pqov"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmcr5"]
+atlas = ExtResource("24_srpnt")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v7pan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70tu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1exd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7w6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6y8js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1rjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbmlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4vxs")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8sak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7gce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pqov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmcr5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prmxh"]
+radius = 9.0
+height = 26.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gmil"]
 size = Vector2(53.5294, 34.1176)
 
@@ -16565,7 +16669,7 @@ tile_map_data = PackedByteArray("AADhACz/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_4gh44")
 
 [node name="Player" parent="." instance=ExtResource("7_gcyco")]
-position = Vector2(886, 1802)
+position = Vector2(425, 313)
 metadata/_edit_group_ = true
 
 [node name="Waypoint1" type="Node2D" parent="."]
@@ -16576,6 +16680,7 @@ position = Vector2(1034, 2109)
 
 [node name="Enemy" parent="." instance=ExtResource("13_yc4f4")]
 position = Vector2(1017, 1969)
+metadata/_edit_group_ = true
 
 [node name="FSM" parent="Enemy" index="3" node_paths=PackedStringArray("npc")]
 npc = NodePath("..")
@@ -16590,6 +16695,799 @@ player = NodePath("../../../Player")
 
 [node name="AttackState" parent="Enemy/FSM" index="2" node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
+
+[node name="WaypointForestKey1" type="Node2D" parent="."]
+position = Vector2(1253, 2695)
+
+[node name="WaypointForestKey2" type="Node2D" parent="."]
+position = Vector2(1073, 2780)
+
+[node name="WaypointForestKey3" type="Node2D" parent="."]
+position = Vector2(1151, 2698)
+
+[node name="WaypointForestKey4" type="Node2D" parent="."]
+position = Vector2(1182, 2861)
+
+[node name="WaypointForestKey5" type="Node2D" parent="."]
+position = Vector2(1279, 2785)
+
+[node name="Enemy2" type="CharacterBody2D" parent="."]
+position = Vector2(1078, 2708)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy2"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy2"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy2" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy2/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointForestKey5"), NodePath("../../../WaypointForestKey3"), NodePath("../../../WaypointForestKey1"), NodePath("../../../WaypointForestKey2"), NodePath("../../../WaypointForestKey4")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy2/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy2/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy2/FSM/AttackState"]
+
+[node name="Enemy3" type="CharacterBody2D" parent="."]
+position = Vector2(1222, 2684)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy3"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy3"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy3" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy3/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointForestKey3"), NodePath("../../../WaypointForestKey2"), NodePath("../../../WaypointForestKey1"), NodePath("../../../WaypointForestKey5"), NodePath("../../../WaypointForestKey4")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy3/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy3/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy3/FSM/AttackState"]
+
+[node name="Enemy4" type="CharacterBody2D" parent="."]
+position = Vector2(1113, 2805)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy4"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy4"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy4" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy4/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointForestKey4"), NodePath("../../../WaypointForestKey3"), NodePath("../../../WaypointForestKey5"), NodePath("../../../WaypointForestKey1"), NodePath("../../../WaypointForestKey2")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy4/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy4/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy4/FSM/AttackState"]
+
+[node name="Enemy5" type="CharacterBody2D" parent="."]
+position = Vector2(1187, 2814)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy5"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy5"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy5" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy5/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointForestKey3"), NodePath("../../../WaypointForestKey1"), NodePath("../../../WaypointForestKey2"), NodePath("../../../WaypointForestKey5"), NodePath("../../../WaypointForestKey4")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy5/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy5/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy5/FSM/AttackState"]
+
+[node name="Enemy6" type="CharacterBody2D" parent="."]
+position = Vector2(1136, 2737)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy6"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy6"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy6" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy6/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointForestKey2"), NodePath("../../../WaypointForestKey3"), NodePath("../../../WaypointForestKey1"), NodePath("../../../WaypointForestKey5"), NodePath("../../../WaypointForestKey4")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy6/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy6/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy6/FSM/AttackState"]
+
+[node name="WaypointDesertKey6" type="Node2D" parent="."]
+position = Vector2(-1371, 335)
+
+[node name="WaypointDesertKey7" type="Node2D" parent="."]
+position = Vector2(-1551, 420)
+
+[node name="WaypointDesertKey8" type="Node2D" parent="."]
+position = Vector2(-1473, 338)
+
+[node name="WaypointDesertKey9" type="Node2D" parent="."]
+position = Vector2(-1442, 501)
+
+[node name="WaypointDesertKey10" type="Node2D" parent="."]
+position = Vector2(-1363, 419)
+
+[node name="Enemy7" type="CharacterBody2D" parent="."]
+position = Vector2(-1546, 348)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy7"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy7"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy7" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy7/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointDesertKey6"), NodePath("../../../WaypointDesertKey8"), NodePath("../../../WaypointDesertKey7"), NodePath("../../../WaypointDesertKey9"), NodePath("../../../WaypointDesertKey10")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy7/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy7/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy7/FSM/AttackState"]
+
+[node name="Enemy8" type="CharacterBody2D" parent="."]
+position = Vector2(-1402, 324)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy8"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy8"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy8" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy8/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointDesertKey10"), NodePath("../../../WaypointDesertKey8"), NodePath("../../../WaypointDesertKey6"), NodePath("../../../WaypointDesertKey7"), NodePath("../../../WaypointDesertKey9")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy8/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy8/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy8/FSM/AttackState"]
+
+[node name="Enemy9" type="CharacterBody2D" parent="."]
+position = Vector2(-1511, 445)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy9"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy9"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy9" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy9/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointDesertKey9"), NodePath("../../../WaypointDesertKey10"), NodePath("../../../WaypointDesertKey7"), NodePath("../../../WaypointDesertKey6"), NodePath("../../../WaypointDesertKey9")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy9/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy9/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy9/FSM/AttackState"]
+
+[node name="Enemy10" type="CharacterBody2D" parent="."]
+position = Vector2(-1437, 454)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy10"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy10"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy10" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy10/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointDesertKey8"), NodePath("../../../WaypointDesertKey7"), NodePath("../../../WaypointDesertKey6"), NodePath("../../../WaypointDesertKey8"), NodePath("../../../WaypointDesertKey9")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy10/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy10/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy10/FSM/AttackState"]
+
+[node name="Enemy11" type="CharacterBody2D" parent="."]
+position = Vector2(-1488, 377)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy11"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy11"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy11" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy11/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointDesertKey8"), NodePath("../../../WaypointDesertKey10"), NodePath("../../../WaypointDesertKey6"), NodePath("../../../WaypointDesertKey7"), NodePath("../../../WaypointDesertKey9")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy11/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy11/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy11/FSM/AttackState"]
+
+[node name="WaypointSnowKey11" type="Node2D" parent="."]
+position = Vector2(2894, 1114)
+
+[node name="WaypointSnowKey12" type="Node2D" parent="."]
+position = Vector2(2714, 1199)
+
+[node name="WaypointSnowKey13" type="Node2D" parent="."]
+position = Vector2(2792, 1117)
+
+[node name="WaypointSnowKey14" type="Node2D" parent="."]
+position = Vector2(2823, 1280)
+
+[node name="WaypointSnowKey15" type="Node2D" parent="."]
+position = Vector2(2920, 1204)
+
+[node name="Enemy12" type="CharacterBody2D" parent="."]
+position = Vector2(2719, 1127)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy12"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy12"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy12" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy12/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointSnowKey11"), NodePath("../../../WaypointSnowKey12"), NodePath("../../../WaypointSnowKey13"), NodePath("../../../WaypointSnowKey14"), NodePath("../../../WaypointSnowKey15")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy12/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy12/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy12/FSM/AttackState"]
+
+[node name="Enemy13" type="CharacterBody2D" parent="."]
+position = Vector2(2863, 1103)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy13"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy13"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy13"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy13/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy13" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy13/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointSnowKey14"), NodePath("../../../WaypointSnowKey13"), NodePath("../../../WaypointSnowKey11"), NodePath("../../../WaypointSnowKey15"), NodePath("../../../WaypointSnowKey12")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy13/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy13/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy13/FSM/AttackState"]
+
+[node name="Enemy14" type="CharacterBody2D" parent="."]
+position = Vector2(2754, 1224)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy14"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy14"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy14"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy14/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy14" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy14/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointSnowKey12"), NodePath("../../../WaypointSnowKey11"), NodePath("../../../WaypointSnowKey15"), NodePath("../../../WaypointSnowKey14"), NodePath("../../../WaypointSnowKey13")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy14/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy14/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy14/FSM/AttackState"]
+
+[node name="Enemy15" type="CharacterBody2D" parent="."]
+position = Vector2(2828, 1233)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy15"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy15"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy15"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy15/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy15" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy15/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointSnowKey12"), NodePath("../../../WaypointSnowKey14"), NodePath("../../../WaypointSnowKey15"), NodePath("../../../WaypointSnowKey13"), NodePath("../../../WaypointSnowKey11")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy15/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy15/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy15/FSM/AttackState"]
+
+[node name="Enemy16" type="CharacterBody2D" parent="."]
+position = Vector2(2777, 1156)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("23_ert3u")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy16"]
+visible = false
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CapsuleShape2D_bpf7j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy16"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v7pan")
+animation = &"Death"
+autoplay = "default"
+
+[node name="EnemyHurtbox" type="Area2D" parent="Enemy16"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy16/EnemyHurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_prmxh")
+debug_color = Color(0.983236, 0, 0.354901, 0.42)
+
+[node name="FSM" type="Node" parent="Enemy16" node_paths=PackedStringArray("npc")]
+script = ExtResource("25_xkc8w")
+npc = NodePath("..")
+initialState = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="Enemy16/FSM" node_paths=PackedStringArray("waypoints", "player")]
+script = ExtResource("26_6tmn6")
+waypoints = [NodePath("../../../WaypointSnowKey15"), NodePath("../../../WaypointSnowKey11"), NodePath("../../../WaypointSnowKey12"), NodePath("../../../WaypointSnowKey14"), NodePath("../../../WaypointSnowKey11")]
+player = NodePath("../../../Player")
+
+[node name="ChaseState" type="Node" parent="Enemy16/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("27_7vx5v")
+player = NodePath("../../../Player")
+
+[node name="AttackState" type="Node" parent="Enemy16/FSM" node_paths=PackedStringArray("player")]
+script = ExtResource("28_se3t2")
+player = NodePath("../../../Player")
+
+[node name="Timer" type="Timer" parent="Enemy16/FSM/AttackState"]
 
 [node name="NPC" type="Node2D" parent="."]
 
@@ -16710,6 +17608,51 @@ vertical_alignment = 1
 position = Vector2(840, 609)
 zoom = Vector2(1.6, 1.6)
 
+[connection signal="animation_finished" from="Enemy2/AnimatedSprite2D" to="Enemy2" method="AniEnd"]
+[connection signal="area_entered" from="Enemy2/EnemyHurtbox" to="Enemy2" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy2/EnemyHurtbox" to="Enemy2" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy3/AnimatedSprite2D" to="Enemy3" method="AniEnd"]
+[connection signal="area_entered" from="Enemy3/EnemyHurtbox" to="Enemy3" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy3/EnemyHurtbox" to="Enemy3" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy4/AnimatedSprite2D" to="Enemy4" method="AniEnd"]
+[connection signal="area_entered" from="Enemy4/EnemyHurtbox" to="Enemy4" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy4/EnemyHurtbox" to="Enemy4" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy5/AnimatedSprite2D" to="Enemy5" method="AniEnd"]
+[connection signal="area_entered" from="Enemy5/EnemyHurtbox" to="Enemy5" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy5/EnemyHurtbox" to="Enemy5" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy6/AnimatedSprite2D" to="Enemy6" method="AniEnd"]
+[connection signal="area_entered" from="Enemy6/EnemyHurtbox" to="Enemy6" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy6/EnemyHurtbox" to="Enemy6" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy7/AnimatedSprite2D" to="Enemy7" method="AniEnd"]
+[connection signal="area_entered" from="Enemy7/EnemyHurtbox" to="Enemy7" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy7/EnemyHurtbox" to="Enemy7" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy8/AnimatedSprite2D" to="Enemy8" method="AniEnd"]
+[connection signal="area_entered" from="Enemy8/EnemyHurtbox" to="Enemy8" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy8/EnemyHurtbox" to="Enemy8" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy9/AnimatedSprite2D" to="Enemy9" method="AniEnd"]
+[connection signal="area_entered" from="Enemy9/EnemyHurtbox" to="Enemy9" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy9/EnemyHurtbox" to="Enemy9" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy10/AnimatedSprite2D" to="Enemy10" method="AniEnd"]
+[connection signal="area_entered" from="Enemy10/EnemyHurtbox" to="Enemy10" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy10/EnemyHurtbox" to="Enemy10" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy11/AnimatedSprite2D" to="Enemy11" method="AniEnd"]
+[connection signal="area_entered" from="Enemy11/EnemyHurtbox" to="Enemy11" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy11/EnemyHurtbox" to="Enemy11" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy12/AnimatedSprite2D" to="Enemy12" method="AniEnd"]
+[connection signal="area_entered" from="Enemy12/EnemyHurtbox" to="Enemy12" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy12/EnemyHurtbox" to="Enemy12" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy13/AnimatedSprite2D" to="Enemy13" method="AniEnd"]
+[connection signal="area_entered" from="Enemy13/EnemyHurtbox" to="Enemy13" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy13/EnemyHurtbox" to="Enemy13" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy14/AnimatedSprite2D" to="Enemy14" method="AniEnd"]
+[connection signal="area_entered" from="Enemy14/EnemyHurtbox" to="Enemy14" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy14/EnemyHurtbox" to="Enemy14" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy15/AnimatedSprite2D" to="Enemy15" method="AniEnd"]
+[connection signal="area_entered" from="Enemy15/EnemyHurtbox" to="Enemy15" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy15/EnemyHurtbox" to="Enemy15" method="OnAreaExit"]
+[connection signal="animation_finished" from="Enemy16/AnimatedSprite2D" to="Enemy16" method="AniEnd"]
+[connection signal="area_entered" from="Enemy16/EnemyHurtbox" to="Enemy16" method="OnAreaEntered"]
+[connection signal="area_exited" from="Enemy16/EnemyHurtbox" to="Enemy16" method="OnAreaExit"]
 [connection signal="body_entered" from="TotemArea" to="Player" method="_OnTotemAreaPlayerEntered"]
 
 [editable path="Player"]

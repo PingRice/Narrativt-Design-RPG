@@ -3,7 +3,7 @@ using System;
 
 public partial class AttackState : State
 {
-	public Player player;
+	[Export] public Player player;
 	[Export] public float attackRate = 1;  // numbers of attacks pr. second..
 	[Export] public float attackRange = 30; // Range of attack ...
 	public CharacterBody2D npc;
@@ -24,6 +24,8 @@ public partial class AttackState : State
 		attackTimer.Timeout += Attack;
 
 		GD.Print("AttackState is ready" + this.Name); // Info ift. fejl i opsætning
+
+		
 	}
 
 	public override void Update(float delta)

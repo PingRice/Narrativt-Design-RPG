@@ -13,7 +13,7 @@ public partial class Player : CharacterBody2D
 	public int DirectionMoved = 1;
 	public bool isAttackReady = true;
 	bool areaOverlapping = false;
-	
+
 	public Area2D HitBox;
 	public AttackState attackState;
 
@@ -26,19 +26,19 @@ public partial class Player : CharacterBody2D
 		get { return _HitPoints; }
 		set
 		{
-			_HitPoints = Mathf.Clamp(value,0f,100f);
+			_HitPoints = Mathf.Clamp(value, 0f, 100f);
 			_progressBar.Value = _HitPoints;
-			if(_HitPoints <= 0f)
+			if (_HitPoints <= 0f)
 			{
 				GetTree().ReloadCurrentScene();
 			}
 		}
 	}
 	private float _HitPoints = 100f;
-	
+
 	[Signal]
 	public delegate void DamageSignalEventHandler(float Damage);
-	
+
 	public override void _Ready()
 	{
 		attackState = GetNode<AttackState>("/root/World/Enemy/FSM/AttackState");
@@ -69,12 +69,15 @@ public partial class Player : CharacterBody2D
 		//GD.Print(direction);
 		//Højre
 
+		if (this.isAttacking == false)
+		{
+			if (direction.X > 0)
+				aniSprite.FlipH = false;
 
-		if (direction.X > 0)
-			aniSprite.FlipH = false;
+			if (direction.X < 0)
+				aniSprite.FlipH = true;
 
-		if (direction.X < 0)
-			aniSprite.FlipH = true;
+		}
 
 
 		if (direction != Vector2.Zero)
@@ -263,19 +266,20 @@ public partial class Player : CharacterBody2D
 
 	public void PlayerHurtboxEntered(Area2D area)
 	{
-		
+
 	}
-	
+
 	//Noden "Player" er subscribed til TotemArea, body_entered. Som følge vil denne metode blive kaldt. 
-	public void _OnTotemAreaPlayerEntered(Node2D other) {
-		if (other.Name == "Player" && GetNode<Global>("/root/Global").HasWon() == true) 
+	public void _OnTotemAreaPlayerEntered(Node2D other)
+	{
+		if (other.Name == "Player" && GetNode<Global>("/root/Global").HasWon() == true)
 		{
 			GD.Print("Spiller Hastighed lig nul");
 			Speed = 0f;
-			Position = new Vector2(400,300);
+			Position = new Vector2(400, 300);
 			QueueFree();
 		}
 	}
-	
-	 
+
+
 }
